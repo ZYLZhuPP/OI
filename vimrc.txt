@@ -1,0 +1,18 @@
+set nu
+set mouse=a
+set cursorline
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set smartindent
+inoremap jk <ESC>
+inoremap jj <C-n>
+inoremap kk <ESC>A;
+inoremap <C-l> <right>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap { {}<ESC>i
+inoremap [ []<ESC>i
+inoremap ( ()<ESC>i
+inoremap ' ''<ESC>i
+inoremap " ""<ESC>i
