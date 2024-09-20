@@ -56,7 +56,7 @@ Lf acc(Lf v, Lf x, Lf y) { return (x > -eps? min(v + x, y) : max(v + x, y)); }
 int style, at, lei, m; bool near;
 
 inline int check() {
-    bool a = 0, b = 0, c = 0, d = 0; at = lei = 0;
+    bool a = 0, b = 0, c = 0, d = 0;at = lei = 0;
     bool aa = 0, bb = 0, cc = 0, dd = 0;
     For (i, 1, m) {
         if (onseg(s, p[i].a, 1)) a = 1, at = i, lei = 1;
@@ -95,9 +95,9 @@ int main() {
     int cnt = 2, jcnt = 0, run = 0;bool jie = 0, jump = 0;
     bool DW, DS, DA, DD;
     while (T--) {
-        string o; cin >> o;
+        string o;cin >> o;
         bool W = 0, S = 0, A = 0, D = 0, L = 0, K = 0;
-		for(auto i : o) W |= (i == 'W'), S |= (i == 'S'), A |= (i == 'A'), D |= (i == 'D'), L |= (i == 'L'), K |= (i == 'K');
+		for(auto i : o) W |= (i == 'W'), S |= (i = 'S'), A |= (i == 'A'), D |= (i == 'D'), L |= (i == 'L'), K |= (i == 'K');
         if (style == 3) cnt = 2;
         if (jie) {
             if (DW) vy = -160;
@@ -112,28 +112,28 @@ int main() {
         }
         if (run) {
             run--; if (!run) jie = 1;
-        } else if (L && cnt) {
+        }else if (L && cnt) {
             jump = jcnt = 0;
             run = 9; cnt--;
             vx = 0; vy = 0;
             DW = W, DS = S, DA = A, DD = D;
-            if (W) vy = -240;
+            if (W) vy =  - 240;
             if (S) vy = 240;
-            if (A) vx = -240;
+            if (A) vx =  - 240;
             if (D) vx = 240;
             if (W & A) vx = -169, vy = -169;
             if (A & S) vx = -169, vy = 169;
             if (S & D) vx = 169, vy = 169;
             if (D & W) vx = 169, vy = -169;
-        } else {
+        }else {
             if (A | D) {
                 int k = (A? -1: 1);
                 if (k * vx > 0 && abs(vx) > 90) {
-                    vx = acc(vx, (style == 3? -6.7 * k: -4.3 * k), 90 * k);
-                } else {
+                    vx = acc(vx, (style == 3?  - 6.7 * k:  - 4.3 * k), 90 * k);
+                }else {
                     vx = acc(vx, (style == 3? 45 * k: 30 * k), 90 * k);
                 }
-            } else {
+            }else {
                 int k = (vx > 0? 1: -1);
                 vx = acc(vx, (style == 3? -16.7 * k: -10.8 * k), 0);
             }
@@ -149,20 +149,18 @@ int main() {
                     if (jcnt) {
                         if (jcnt == 12) jcnt = 0, jump = 0, vy = tmp;
                         else jcnt++;
-                    } else jump = jcnt = 0, vy = tmp;
+                    }else jump = jcnt = 0, vy = tmp;
                 }
-            } else jump = jcnt = 0;
+            }else jump = jcnt = 0;
             if (!jump) {
                 if (style == 1) vy = acc(vy, 15, S? 240: 160);
                 if (style == 2) vy = acc(vy, 1.9, S? 240: 160);
             }
         }
         if (at && in((Vec) {s.x + vx * 1e-7, s.y + vy * 1e-7})) {
-            if (lei == 1) vy = 0;
-            if (lei == 2) vx = 0;
-            if (lei == 3) vy = 0;
-            if (lei == 4) vx = 0;
-        } else {
+            if (lei == 1) vy = 0;if (lei == 2) vx = 0;
+            if (lei == 3) vy = 0;if (lei == 4) vx = 0;
+        }else {
             Seg u = {s, {s.x + vx, s.y + vy}};Vec h = {1e14, 1e14};
             For (i, 1, m) {
                 h = min(Inter(u, p[i].a), h);
@@ -172,12 +170,11 @@ int main() {
             }
             if (h.x == 1e14 && h.y == 1e14) {
                 s.x += vx; s.y += vy;
-            } else {
+            }else {
+                Vec tmp = s;
                 s = h; check();
-                if (lei == 1) vy = 0;
-                if (lei == 2) vx = 0;
-                if (lei == 3) vy = 0;
-                if (lei == 4) vx = 0;
+                if (lei == 1) vy = 0; if (lei == 2) vx = 0;
+                if (lei == 3) vy = 0; if (lei == 4) vx = 0;
             }
         }
         check();
