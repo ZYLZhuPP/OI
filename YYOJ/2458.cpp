@@ -13,7 +13,7 @@ inline int qPow(int a, int b) { int r=1; for (;b;b>>=1,mul(a,a)) if (b&1) mul(r,
 
 struct IO {
 	char c; int f;
-	#define gc() (getchar())
+#define gc() (getchar())
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
