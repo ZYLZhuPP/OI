@@ -71,7 +71,7 @@ if bind_subtasks == 'on':
     sorted_x = sorted(files_dict.keys())
     n_tests = 0
     n_subtasks = 0
-    print(f"\n----检测到{len(sorted_x)}个subtask----\n")
+    print(f"\n----检测到{len(sorted_x)}个subtask----")
 
     # 用于记录每个子任务的起始和结束 id
     subtask_ends = []
@@ -79,7 +79,7 @@ if bind_subtasks == 'on':
 
     for x in sorted_x:
         n_subtasks += 1
-        print(f"----subtask_{n_subtasks}----")
+        print(f"\n----subtask_{n_subtasks}----")
         # 为同一子任务中的所有文件分配相同的 id
         for y in sorted(files_dict[x].keys()):
             n_tests += 1
@@ -94,7 +94,7 @@ if bind_subtasks == 'on':
     # 检查所有子任务分数之和是否为100
     total_score = sum(subtask_scores)
     if total_score != 100:
-        print("警告：子任务分数之和不等于100。")
+        print("\n警告：子任务分数之和不等于100！！！")
 
     # 创建 problem.conf 文件
     conf_lines.append(f"n_tests {n_tests}\n")
