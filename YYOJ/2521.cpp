@@ -59,7 +59,6 @@ namespace HLPP {
         h[S] = tot + 1; push(S);
         while (top) {
             int u = stk[top].back(); stk[top].pop_back();
-            if (h[u] > top) continue;
             if (push(u)) {
                 if (!--gap[h[u]]) For (i, 1, tot) if (h[i] > h[u] && i ^ S && i ^ T) h[i] = tot + 2;
                 relabel(u);
