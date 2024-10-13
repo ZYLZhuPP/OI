@@ -20,8 +20,7 @@ struct IO {
     inline bool operator ~ () const { return ~c; }
 } io;
 
-int n, m, id[N][2][N], tot, a[N][N], b[N][N];
-unordered_map<int, int > g[V];
+int tot;
 
 namespace HLPP {
     int S, T, en = 1, head[V], nxt[M], to[M], cap[M], top, h[V], ex[V], gap[V];
@@ -71,39 +70,7 @@ namespace HLPP {
 }
 using namespace HLPP;
 
-inline void Add(int u, int v, const int &w) {
-    int x = ++tot, y = ++tot;
-    add(v, x, w); add(u, x, w); add(y, u, w); add(x, y, w); add(y, v, w);
-}
-
 int main() {
-    freopen("in.in", "r", stdin);
-    io >> n >> m;
-    For (i, 1, n) {
-        For (j, 1, m - 1) io >> a[i][j] >> b[i][j];
-        io >> a[i][m];
-    }
-    For (i, 1, m) id[1][0][i] = ++tot, id[n][1][i] = ++tot;
-    For (i, 1, n - 1) {
-        int x;
-        io >> x;
-        while (x--) {
-            int l1, r1, l2, r2;
-            io >> l1 >> r1 >> l2 >> r2;
-            int x = ++tot;
-            For (j, l1, r1) id[i][1][j] = x;
-            For (j, l2, r2) id[i + 1][0][j] = x;
-        }
-    }
-    For (i, 1, n) {
-        For (j, 1, m) g[id[i][0][j]][id[i][1][j]] += a[i][j];
-        For (j, 1, m - 1) g[id[i][0][j]][id[i][1][j + 1]] += b[i][j];
-    }
-    For (i, 1, tot) for (auto &[v, w] : g[i]) Add(i, v, w);
-    int s = ++tot, t = ++tot;
-    cerr << tot << " " << en << endl;
-    For (i, 1, m) add(s, id[1][0][i], inf), add(id[n][1][i], t, inf);
-    printf("%d", maxflow(s, t));
 
     return 0;
 }
