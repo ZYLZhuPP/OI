@@ -7,8 +7,6 @@ set softtabstop=4
 set shiftwidth=4
 set smartindent
 inoremap jk <ESC>
-inoremap jj <C-n>
-inoremap kk <ESC>A;
 inoremap <C-l> <right>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap { {}<ESC>i
