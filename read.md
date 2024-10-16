@@ -1,109 +1,51 @@
-### 题目描述
+## 题目描述
 
-有一天，小Y在做作业，他看到了这样一个问题：
+假定你是李华。
 
-对于一颗满二叉树，每个节点$u$上有一个非负**实数**权值$w_{u}$，我们定义该树上所有节点构成的集合为 $U$，根节点为 1，记节点$u$的父亲为$\text{fa}_{u} = \left\lfloor \frac{u}{2}\right\rfloor$，定义这棵树的权值为：$\sum_{u \in U / \{1\}} (w_{u} - w_{\text{fa}_{u}})^2$。
+你在笔记本上写了一个数字$N$，然后拿出了一张草稿纸进行运算：
 
-现在所有叶子节点的权值$p_{i}$均给定，其中$p_{i}$表示标号从小到大第$i$个叶子结点的点权。请你指定所有非叶节点的点权，使得这颗二叉树的权值最小。你只需要输出最小权值即可，答案对$10^{9}+7$取模。
+你先将$N$平方然后加1，得到$N_0$，即$N_0=(N\times N)+1$
 
-这个问题太简单了，被小Y一眼秒了。于是他向你提出了下面的问题。
+接着将$N_0$然后模了一个正整数$a$，得到$N_1$，即$N_1=N_0 \mod a$
 
-上面的问题会给定你一个数列 $p_{i}$，我们记这个问题的答案为$f(p)$。
+然后你将$N_1$加了一个非负整数$b$，得到$N_2$，即$N_2=N_1+b$
 
-现在给你一个长为$n$的数列 $a_{i}$，有下面两种操作：
+然后你将$N_2$模了一个正整数$c$，得到$N_3$，即$N_3=N_2 \mod c$
 
-`1 l r v`将区间 $[l, r]$ 中的元素增加 $v$。
+最后你将$N_3$抄回了笔记本，过了几天，你发现草稿纸找不到了并且忘记了运算的中间过程。你希望根据笔记本上的$N$和$N_3$还原出中间的运算过程。
 
-`2 l r`查询 $f(a_{[l \ldots r]})$。其中 $a_{[l \ldots r]}$表示$a$在 $[l, r]$ 中的元素组成的新序列。
+你记得你写的数字不会很大，大约不会超过$P$，因此你希望求出符合条件的整数三元组$(a,b,c)(1\le a,c\le P$, $0\le b\le P)$。
 
-**本题强制在线。**
+你希望知道符合条件的三元组个数，也想知道具体的方案，但符合条件的三元组个数可能很多，如果超过$10^5$个，输出方案的时候只需要输出字典序最小的$10^5$个三元组即可。
 
-### 输入格式
+## 输入格式
 
-第一行输入两个整数 $n,q$，分别表示$a$的长度和操作个数。
+一行三个整数$N,N_3,P$。
 
-第二行输入 n$ 个非负整数，表示 $a_{i}$。
+## 输出格式
 
-第 3 至 $q+2$ 行每行输入三个非负整数 $opt_{i}^{\prime}, l_{i}^{\prime}, r_{i}^{\prime}$，则有
+第一行输出不同的三元组个数$Q$，
 
-$opt_{i} = opt_{i}^{\prime} \oplus lans$，$l_{i} = l_{i}^{\prime} \oplus lans$，$r_{i} = r_{i}^{\prime} \oplus lans$，其中 $lans$ 是上一次 2 操作的答案，$\oplus$ 是异或运算。
+接下来$\min(Q,10^5)$行按字典序输出对应的三元组（$a$小的先输出，若$a$相同则$b$小的先输出，若$a$和$b$均相同则$c$小的先输出），每行三个数字以空格隔开。若符合条件的三元组个数超过$10^5$，你只需要输出字典序最小的$10^5$个三元组。
 
-由于每行只输入三个整数，1 操作的$v_{i}$值由以下代码生成：
-
-```c
-int lst = 0;
-int get() {
-	return lst = ((_1st + 212001290) ^ 323920323) % 200 + 1;
-}
+## 样例输入1
 ```
-
-选手需要在每次$1$操作后调用`get()`来获取本次操作的$v_{i}$。
-
-### 输出格式
-
-对于每一个 2 操作，输出一行一个整数表示答案。答案对$10^9+7$取模。
-
-### 测试样例
-
-##### 样例1输入
-
+1 2 3
 ```
-5 2
-3 0 4 4 4
-2 1 2
-500000010 500000010 500000013
+## 样例输出1
 ```
-
-解密后的输入是：
-
+4
+1 2 3
+2 2 3
+3 0 3
+3 3 3
 ```
-5 4
-3 0 4 4 4
-2 1 2
-2 2 5
-```
-
-##### 样例1输出
-
-```
-500000008
-333333345
-```
-
-##### 样例解释
-
-对于第一组数据，查询的 $P = \{3, 0\}$，叶子节点有两个，一种最优构造如图（圆圈内是点编号，外面的黑色字是点权，红色字是边权）：
-
-答案是$\left(\frac{3}{2}-0\right)^{2}+\left(\frac{3}{2}-3\right)^{2}=\frac{9}{2}$。
-
-![1-1]()
-
-对于第二组询问，查询的 $p_{i} = \{0, 4, 4, 4\}$，叶子节点有四个，一种最优构造如图：
-
-![1-2]()
-
-答案是$\left(3-\frac{7}{3}\right)^{2}+\left(3-\frac{11}{3}\right)^{2}+\left(\frac{7}{3}-0\right)^{2}+\left(\frac{7}{3}-4\right)^{2}+\left(\frac{11}{3}-4\right)^{2}+\left(\frac{11}{3}-4\right)^{2}=\frac{28}{3}$。
-
-##### 样例2-7
+## 样例$2/3$
 
 见[下发文件]()
 
-### 数据范围与约定
+## 数据范围
 
-![数据范围]()
+$0\le N_3,N\le P$, $1\le P\le 10^5$
 
-特殊性质A：对于所有的1操作，$l_i= r_i$。
-
-特殊性质B：对于所有的2操作，$l_i = 1$。
-
-留空则表示无特殊约束。
-
-对于100%的数据，$1 \leq n, q \leq 2 \times 10^5，0 \leq a_i \leq 200，0 \leq v \leq 200，1 \leq P \leq n，1 \leq l \leq r \leq n$；
-
-对于每一个2操作，令 $r_i - l + 1 = 2k$，则有 $k \in \mathbb{Z},k > 0$。
-
-**输入输出规模较大，请选手使用较快的输入输出方式，请选手注意常数。**
-
-**我们在下发文件 `tree/sample.cpp` 中提供了快读快写模板以及modint模板供选手使用，并提供了 `tree/sample.in` 与 `tree/sample.out` 作为文件输入输出的示例。**
-
-**我们在下发文件 `tree/tree.cpp` 中提供了一个 `get()` 的使用示例供选手参考。**
+![数据范围](data:image/png;base64,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)
