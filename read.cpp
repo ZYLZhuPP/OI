@@ -1,14 +1,12 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int a[10][20];
-
-void f(int a[][20]) {
-	cout << a[0][0];
+namespace A {
+	int a, b;
 }
 
 int main() {
-	f(a);
+	A::a = A::b = 0;
 
 	return 0;
 }
