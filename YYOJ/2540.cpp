@@ -22,7 +22,7 @@ struct IO {
 } io;
 
 int n, a[N];
-ll s[N], b[N], ans;
+ll s[N], b[N], c[N], ans;
 
 int main() {
     io >> n;
@@ -31,21 +31,22 @@ int main() {
         ans = INF;
         For (j, 1, n) s[j] = s[j - 1] + a[j];
         For (j, 3, n - 1) b[j] = b[j - 2] + a[j - 1] - a[j];
-        set<ll > se;
-        for (int j = n - 1; j >= 1; j -= 2) {
-            se.insert(s[n] - s[j] + b[j]);
+        For (j, 1, n - 1) c[j] = s[n] - s[j] + b[j];
+        int pos = n - !(n & 1);
+        for (int j = 1; j < n; j += 2) {
+            if (pos < j) pos = j;
             ll x = s[j] + b[j];
-            auto p = se.upper_bound(x); if (p == se.end()) p = prev(p);
-            auto q = p==se.begin()? p: prev(p);
-            cmin(ans, min(abs(*p - x), abs(*q - x)));
+            while (pos > j && c[pos] < x) pos -= 2;
+            cmin(ans, abs(x - c[pos]));
+            if (pos + 2 < n) cmin(ans, abs(x - c[pos + 2]));
         }
-        se.clear();
-        for (int j = n - 2; j >= 1; j -= 2) {
-            se.insert(s[n] - s[j] + b[j]);
+        pos = n - (n & 1);
+        for (int j = 2; j < n; j += 2) {
+            if (pos < j) pos = j;
             ll x = s[j] + b[j];
-            auto p = se.upper_bound(x); if (p == se.end()) p = prev(p);
-            auto q = p==se.begin()? p: prev(p);
-            cmin(ans, min(abs(*p - x), abs(*q - x)));
+            while (pos > j && c[pos] < x) pos -= 2;
+            cmin(ans, abs(x - c[pos]));
+            if (pos + 2 < n) cmin(ans, abs(x - c[pos + 2]));
         }
         printf("%lld\n", ans);
         a[n + 1] = a[1]; For (j, 1, n) a[j] = a[j + 1];
