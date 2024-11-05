@@ -44,7 +44,7 @@ bind_subtasks = input("子任务？(on/off): ").strip()
 
 if bind_subtasks == 'on':
     # 匹配连接方式的正则表达式
-    link_pattern = re.compile(f"^{prefix}\d+(.+?)\d+\\.in$")
+    link_pattern = re.compile(f"^{prefix}\d+(.*?)[A-Za-z0-9]+\\.in$")
 
     # 计数每个连接方式的出现次数
     link_count = Counter(re.search(link_pattern, filename).group(1) for filename in os.listdir(directory) if re.search(link_pattern, filename))
@@ -54,7 +54,7 @@ if bind_subtasks == 'on':
     print(f"\n检测到连接方式: {connector}")
 
     # 匹配文件名的正则表达式
-    pattern = re.compile(f"^{prefix}(\d+){connector}(\d+)\\.({input_suffix}|{output_suffix})$")
+    pattern = re.compile(f"^{prefix}(\d+){connector}([A-Za-z0-9]+)\\.({input_suffix}|{output_suffix})$")
 
     # 用于存储文件的字典，键为 x 值，值为一个字典，其中键为 y 值，值为一个列表，包含不同后缀的文件名
     files_dict = defaultdict(lambda: defaultdict(list))
@@ -64,7 +64,7 @@ if bind_subtasks == 'on':
         match = pattern.match(filename)
         if match:
             x = int(match.group(1))
-            y = int(match.group(2))
+            y = match.group(2)
             files_dict[x][y].append(match.group(3))
 
     # 按 x 值排序，然后对每个 x 值下的 y 值排序
