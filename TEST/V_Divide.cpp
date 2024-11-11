@@ -31,10 +31,7 @@ namespace VD {
         msz[u] = 0;
         for (auto v : es[u]) if (!vis[v] && v ^ pre) {
             cmax(msz[u], sz[v]);
-            if (v = getG(v, u, n)) {
-                sz[u] = n - msz[u];
-                return v;
-            }
+            if (v = getG(v, u, n)) return sz[u] = n - msz[u], v;
         }
         return max(msz[u], n - sz[u]) <= n / 2? sz[u] = n, u: 0;
     }
