@@ -24,7 +24,7 @@ struct IO {
     inline bool operator ~ () const { return ~c; }
 } io;
 
-int T, n, q, dep[N], a[N], b[N], w[N], ivf[N];
+int T, n, q, dep[N], a[N], b[N], w[N], ivf[N], vis[N], tim;
 vector<int > es[N];
 
 inline void dfs0(int u, int pre) {
@@ -53,15 +53,23 @@ int main() {
         io >> n >> q;
         For (i, 1, n) io >> a[i] >> b[i] >> w[i];
         build();
+        bool ok = 1;
         int op, x, v, u;
         while (q--) {
             io >> op;
-            if (op == 1) io >> x >> v, a[x] = v, build();
-            else if (op == 2) io >> x >> v, w[x] = v, build();
+            if (op == 1) io >> x >> v, a[x] = v, ok = 0;
+            else if (op == 2) io >> x >> v, w[x] = v, ok = 0;
             else {
                 io >> u;
-                if (!dep[u]) printf("%d\n", a[u]);
-                else printf("%d\n", mo(a[u] + ml(w[u], ivf[dep[u]])));
+                if (ok) {
+                    if (!dep[u]) printf("%d\n", a[u]);
+                    else printf("%d\n", mo(a[u] + ml(w[u], ivf[dep[u]])));
+                } else {
+                    int x = 1, v = u, p = b[v]; tim++;
+                    while (a[p] <= a[v] && a[p] + w[p] > a[v] && vis[p] ^ tim) vis[v] = tim, v = p, p = b[v], x++;
+                    if (a[p] > a[v]) printf("%d\n", mo(a[u] + ml(w[u], ivf[x])));
+                    else printf("%d\n", a[u]);
+                }
             }
         }
     }
