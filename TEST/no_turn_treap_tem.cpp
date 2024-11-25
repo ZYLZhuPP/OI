@@ -4,7 +4,7 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 
-mt19937 rnd(time(0));
+mt19937_64 rnd(time(0));
 
 template<class BST = ll, class VAL = ll>
 class Treap {

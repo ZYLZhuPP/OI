@@ -13,7 +13,7 @@ struct etype
     etype *next, *pair;
     etype() {}
     etype(int T, int C, int U, etype *N) : t(T), c(C), u(U), next(N) {}
-    void *operator new(unsigned, void *p) { return p; }
+    void *operator new(size_t, void *p) { return p; }
 } * e[V], Te[E + E], *Pe;
 
 int S, T, n, piS, cost;

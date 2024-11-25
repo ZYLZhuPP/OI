@@ -14,7 +14,7 @@ struct IO {
 	inline bool operator ~ () {return ~c;}
 } io;
 
-template<class C> inline void clear(C &a) {C().swap(a);}
+template<class C> inline void clear(C &a) { C().swap(a); }
 
 struct Big {
     const int Base = 10000, Bit = 4;
@@ -55,6 +55,11 @@ struct Big {
     template<class C>
     Big& operator = (const C &X) {
         a = Big(X).a;
+        return *this;
+    }
+
+    Big& operator = (const Big &X) {
+        a = X.a;
         return *this;
     }
 
