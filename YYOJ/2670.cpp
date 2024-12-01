@@ -23,15 +23,7 @@ struct IO {
     inline bool operator ~ () const { return ~c; }
 } io;
 
-int n, m, fac[N], ivf[N], cnt[10], f[10][10][10][10], ans;
-
-inline void dfs(int k, int s) {
-    if (k > n) {
-        f[cnt[1]][cnt[2]][cnt[3]][cnt[4]] = 1;
-        return;
-    }
-    For (i, 1, m - 1) if (s + i != m) cnt[i]++, dfs(k + 1, (s + i) % m), cnt[i]--;
-}
+int n, P, ans, f[N][N], s[N][N], fac[N], ivf[N];
 
 inline void init() {
     fac[0] = 1; For (i, 1, n) fac[i] = ml(fac[i - 1], i);
@@ -39,14 +31,22 @@ inline void init() {
 }
 
 int main() {
-    io >> n >> m;
+    io >> n >> P;
     init();
-    if (n <= 5) {
-        dfs(1, 0);
-        For (i1, 0, n) For (i2, 0, n) For (i3, 0, n) For (i4, 0, n) if (f[i1][i2][i3][i4]) ans += fac[n] / fac[i1] / fac[i2] / fac[i3] / fac[i4];
-    } else if (m == 3) {
-        int x = (n - 1) / 2;
-        ans = ml(ml(2, fac[n]), ml(ivf[n - x], ivf[x]));
+    ans = qPow(P - 1, n);
+    int x = 0, y = P - 1;
+    For (i, 2, n) {
+        int t = y;
+        y = mo(ml(P - 2, y) + ml(P - 1, x));
+        x = t;
+    }
+    add(ans, -x);
+    For (i, 0, n) {
+        For (j, i, n) {
+            f[i][j] = i? mo(s[i - 1][j - 1] - (j>=P-1? s[i - 1][j - P + 1]: 0)): !j;
+            s[i][j] = mo(s[i][j - 1] + f[i][j]);
+            if (n - i >= j + P && (n - i - j) % P) add(ans, -ml(ml(P - 1, f[i][j]), ml(fac[n], ml(ivf[i], ivf[n - i]))));
+        }
     }
     printf("%d", ans);
 
