@@ -28,8 +28,8 @@ namespace BIT {
     }
     inline int query(int l, int r) {
         int res = 0;
-        for (l--; l && l + lowbit(l) <= r; l += lowbit(l)) res += L[l];
-        for (; r && r - lowbit(r) >= l; r -= lowbit(r)) res += R[r];
+        if (--l) for (; l + lowbit(l) <= r; l += lowbit(l)) res += L[l];
+        for (; l ^ r; r -= lowbit(r)) res += R[r];
         return res;
     }
 }
