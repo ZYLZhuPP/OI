@@ -26,7 +26,7 @@ int main(){
 	while(T--){
 		s1=s2=0;
 		scanf("%s", k);
-		gets(st);
+		fgets(st, sizeof st, stdin);
 		l=strlen(st);
 		for(int i=0; i<l; i++){
 			((s1*=P1)+=st[i])%=Mo1;

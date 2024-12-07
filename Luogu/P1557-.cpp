@@ -25,4 +25,4 @@ int main(){
     }
     printf("%lld", ans);
     return 0;
-}//需要高精度 
+}//锟斤拷要锟竭撅拷锟斤拷 

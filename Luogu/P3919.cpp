@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-//ÎÒ°®ÓÃ#define
+//ï¿½Ò°ï¿½ï¿½ï¿½#define
 #define mid(x, y) (x + y) >> 1
 #define getm int m = mid(s, t)
 using namespace std;

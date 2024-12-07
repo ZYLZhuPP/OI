@@ -32,14 +32,14 @@ void print(int x)
     putchar(x % 10 + '0');
 }
 
-int n, m, len, cnt; // ¿é³¤£¬¿éµÄ¸öÊý
-int a[N], loc[N];   // Ã¿¸öa[i]ËùÊô¿éµÄ±àºÅ
+int n, m, len, cnt; // ï¿½é³¤ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½
+int a[N], loc[N];   // Ã¿ï¿½ï¿½a[i]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½
 struct Kuai
 {
-    int l, r, tg; // ¿éµÄ×óÓÒ¶Ëµã£¬×ÜºÍ£¬±ê¼Ç
+    int l, r, tg; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¶Ëµã£¬ï¿½ÜºÍ£ï¿½ï¿½ï¿½ï¿½
 } k[N];
 vector<int> v[N];
-void sortt(int x) // ¶ÔµÚx¸ö¿éÅÅÐò
+void sortt(int x) // ï¿½Ôµï¿½xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 {
     v[x].clear();
     for (int i = k[x].l; i <= k[x].r; i++)
@@ -57,13 +57,13 @@ void modify(int l, int r, int val)
         return;
     }
     for (int i = l; i <= k[idx].r; i++)
-        a[i] += val; // ×ó±ßÉ¢¿é
+        a[i] += val; // ï¿½ï¿½ï¿½É¢ï¿½ï¿½
     sortt(idx);
     for (int i = k[idy].l; i <= r; i++)
-        a[i] += val; // ÓÒ±ßÉ¢¿é
+        a[i] += val; // ï¿½Ò±ï¿½É¢ï¿½ï¿½
     sortt(idy);
     for (int i = idx + 1; i < idy; i++)
-        k[i].tg += val; // Õû¿é
+        k[i].tg += val; // ï¿½ï¿½ï¿½ï¿½
 }
 int query(int l, int r, int val)
 {
@@ -81,7 +81,7 @@ int query(int l, int r, int val)
     for (int i = idx + 1; i < idy; i++)
     {
         ans += v[i].end() - lower_bound(v[i].begin(), v[i].end(), val - k[i].tg);
-        // Òª¼õtgµÄÔ­ÒòÊÇÕû¿éÐÞ¸ÄÊ±²»ÊÇÖ±½Ó¼Ó£¬¶øÊÇ¸øtag±ê¼Ç£¬µ«ÊÇCÊÇËã¼ÓÁËtagµÄ£¬Òª¼õÈ¥
+        // Òªï¿½ï¿½tgï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó¼Ó£ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½tagï¿½ï¿½Ç£ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tagï¿½Ä£ï¿½Òªï¿½ï¿½È¥
     }
     return ans;
 }

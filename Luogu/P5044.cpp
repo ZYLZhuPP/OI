@@ -30,7 +30,7 @@ struct ask{
 		a[n]=x,b[n++]=y;
 	}
 } q[N];
-struct list{
+struct List{
 	int *a,n;
 	void c(){ n=0,a=NULL; }
 	void pb(int x){
