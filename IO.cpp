@@ -4,6 +4,7 @@ using namespace std;
 #define st first
 #define nd second
 #define pb push_back
+#define all(a) a.begin(), a.end()
 #define rFor(i, r, l) for (int i = (r); i >= (l); --i)
 #define For(i, l, r) for (int i = (l); i <= (r); ++i)
 typedef long long ll;
