@@ -7,7 +7,7 @@ const int N = 3e4 + 5, inf = 1e9;
 
 struct IO {
 	char c; int f;
-#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
@@ -24,7 +24,7 @@ struct V {
     int mx, s;
     V() { mx = -inf; s = 0; }
     V(int v): mx(v), s(v) { }
-    V operator + (const V &a) const {
+    inline V operator + (const V &a) const {
         V r = a;
         r.mx = max(r.mx, mx); r.s += s;
         return r;
@@ -68,14 +68,14 @@ namespace Heavy {
         for (auto &v : es[u]) if (!top[v]) dfs1(v, v);
         dfn_[u] = tim;
     }
-    void init(int rt = 1) {
+    inline void init(int rt = 1) {
         dfs0(rt, 0); dfs1(rt, rt);
         For (i, 1, n) Seg::upd(1, 1, n, dfn[i], w[i]);
     }
-    void upd(int u, const int &v) {
+    inline void upd(int u, const int &v) {
         Seg::upd(1, 1, n, dfn[u], v);
     }
-    V query(int u, int v) {
+    inline V query(int u, int v) {
         V res;
         while (top[u] ^ top[v]) {
             if (dep[top[u]] < dep[top[v]]) swap(u, v);

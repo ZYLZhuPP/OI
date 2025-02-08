@@ -9,7 +9,7 @@ int n, m, e, u, v;
 namespace Hungary {
     vector<int > es[N];
     int mch[N], vis[N], tim;
-    bool dfs(int u) {
+    inline bool dfs(int u) {
         for (auto &v : es[u]) if (vis[v] ^ tim) {
             vis[v] = tim;
             if (!mch[v] || dfs(mch[v])) {
@@ -19,7 +19,7 @@ namespace Hungary {
         }
         return 0;
     }
-    int match(int n) {
+    inline int match(int n) {
         int res = 0;
         memset(mch, 0, sizeof mch);
         For (i, 1, n) {

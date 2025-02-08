@@ -8,7 +8,7 @@ const double eps = 1e-8;
 int n;
 double a[N][N];
 
-double Det(int n) {
+inline double Det(int n) {
     double res = 1, x;
     For (i, 1, n) {
         int k = i;

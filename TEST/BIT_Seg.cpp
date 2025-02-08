@@ -8,7 +8,7 @@ const int N = 1e5 + 5;
 
 struct IO {
 	char c; int f;
-#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
@@ -30,7 +30,7 @@ namespace Seg {
         Node() { memset(c, 0, sizeof c); }
     } o[S];
     ll s[S], t[S];
-    void upd(int &p, int l, int r, const int &x, const int &y, const int &d) {
+    inline void upd(int &p, int l, int r, const int &x, const int &y, const int &d) {
 //    cout << l << r << endl;
         if (!d || r < l || l > y || r < x) return;
 //        cout << l << r << p << endl;
@@ -41,7 +41,7 @@ namespace Seg {
         For (i, 0, C - 1) upd(o[p].c[i], l + i * m, min(l + (i + 1) * m - 1, r), x, y, d);
 //        cout << "ls = " << ls << endl; cout << "p = " << p << endl;
     }
-    ll query(int p, int l, int r, const int &x, const int &y) {
+    inline ll query(int p, int l, int r, const int &x, const int &y) {
         if (!p || r < l || l > y || r < x) return 0;
 //        cout << l << r << " " << o[p].s << endl;
         if (x <= l && r <= y) return s[p];

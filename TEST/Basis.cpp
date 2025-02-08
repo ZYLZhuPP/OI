@@ -9,7 +9,7 @@ template<class C> inline void cmax(C &x, const C &y) { x = y>x? y: x; }
 
 struct IO {
 	char c; int f;
-#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
@@ -26,31 +26,31 @@ struct Basis {
     static const int B = 60;
     ll o[B]; bool zero;
     Basis() { memset(o, 0, sizeof o); zero = 0; }
-    void ins(ll x) {
+    inline void ins(ll x) {
         rFor (i, B - 1, 0) if (x >> i & 1) {
             if (!o[i]) return void(o[i] = x);
             else x ^= o[i];
         }
         zero = 1;
     }
-    bool in(ll x) {
+    inline bool in(ll x) {
         rFor (i, B - 1, 0) if (x >> i & 1) {
             if (!o[i]) return 0;
             else x ^= o[i];
         }
         return 1;
     }
-    ll mx() {
+    inline ll mx() {
         ll res = 0;
         rFor (i, B - 1, 0) cmax(res, res ^ o[i]);
         return res;
     }
-    ll mn() {
+    inline ll mn() {
         if (zero) return 0;
         For (i, 0, B - 1) if (o[i]) return o[i];
         return 1ll << B;
     }
-    ll kth(ll k) {
+    inline ll kth(ll k) {
         k -= zero; if (!k) return 0;
         rFor (i, B - 1, 0) if (o[i]) For (j, i + 1, B - 1) if (o[j] >> i & 1) o[j] ^= o[i];
         ll res = 0;

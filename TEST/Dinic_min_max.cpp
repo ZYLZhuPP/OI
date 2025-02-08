@@ -6,7 +6,7 @@ const int N = 2e3 + 5, M = 2e5 + 5, inf = 1e9;
 
 struct IO {
 	char c; int f;
-	#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
@@ -26,7 +26,7 @@ namespace Dinic {
         nxt[++en] = head[u]; head[u] = en; to[en] = v; cap[en] = f;
         nxt[++en] = head[v]; head[v] = en; to[en] = u; cap[en] = 0;
     }
-    bool bfs(int n) {
+    inline bool bfs(int n) {
         memset(lev, 0, (n + 1) << 2); memcpy(cur, head, (n + 1) << 2);
         int h = 1, t = 0; lev[q[++t] = T] = 1;
         while (h <= t) {
@@ -38,7 +38,7 @@ namespace Dinic {
         }
         return 0;
     }
-    int dfs(int u, int r) {
+    inline int dfs(int u, int r) {
         if (u == T) return r;
         int flow = 0, f, v;
         for (int &i = cur[u]; i; i = nxt[i]) if (cap[i] && lev[v = to[i]] == lev[u] - 1) {
@@ -51,7 +51,7 @@ namespace Dinic {
         if (flow < r) lev[u] = -1;
         return flow;
     }
-    int maxflow(int n, int s, int t) {
+    inline int maxflow(int n, int s, int t) {
         S = s; T = t;
         int res = 0;
         while (bfs(n)) res += dfs(S, inf);

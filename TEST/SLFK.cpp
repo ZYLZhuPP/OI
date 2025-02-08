@@ -5,7 +5,7 @@ typedef long long ll;
 
 struct IO {
 	char c; int f;
-	#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
@@ -19,11 +19,11 @@ struct IO {
 int n;
 ll f[105], s[105];
 
-void init(int n) {
+inline void init(int n) {
     for (int i = 1; i <= n; ++i) s[i] = s[i - 1] + f[i];
 }
 
-ll H(int n) {
+inline ll H(int n) {
     init(n);
     ll res = 0;
     int l = 1;

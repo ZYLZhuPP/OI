@@ -33,7 +33,7 @@ namespace KDT {
         o[u].s = o[ls].s + o[rs].s + o[u].v.v;
     }
     inline void pia(int u, int s) { if (!u) return; pia(ls, s); s += o[ls].sz + 1; id[s] = u; pia(rs, s); }
-    int build(int l, int r, int d = 0) {
+    inline int build(int l, int r, int d = 0) {
         if (l > r) return 0;
         int m = (l + r) >> 1;
         D = d; nth_element(id + l, id + m, id + r + 1, [&](const int &a, const int &b) { return o[a].v < o[b].v; } );
@@ -42,11 +42,11 @@ namespace KDT {
         return u;
     }
     inline void check(int &u, int d) { if (max(o[ls].sz, o[rs].sz) > alp * o[u].sz) pia(u, 0), u = build(1, o[u].sz, d); }
-    void ins(int &u, const P &p, int d = 0) {
+    inline void ins(int &u, const P &p, int d = 0) {
         if (!u) return u = ++tot, o[u] = Node(p), void();
         D = d; p < o[u].v? ins(ls, p, d ^ 1): ins(rs, p, d ^ 1); up(u); check(u, d);
     }
-    int query(int u, const Node &p) {
+    inline int query(int u, const Node &p) {
         if (!u || o[u].out(p)) return 0;
         if (o[u].in(p)) return o[u].s;
         return Node(o[u].v).in(p) * o[u].v.v + query(ls, p) + query(rs, p);

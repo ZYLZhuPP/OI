@@ -7,7 +7,7 @@ const int N = 1e5 + 5;
 
 struct IO {
 	char c; int f;
-	#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
@@ -20,7 +20,7 @@ struct IO {
 
 int n, phi[N], pri[N], psz, mip[N];
 
-ll Phi(ll x) {
+inline ll Phi(ll x) {
     ll res = x;
     for (ll i = 2; i * i <= x; ++i) if (!(x % i)) {
         res = res / i * (i - 1);
@@ -30,7 +30,7 @@ ll Phi(ll x) {
     return res;
 }
 
-void init_Phi() {
+inline void init_Phi() {
     phi[1] = 1;
     For (i, 2, N - 1) {
         if (!mip[i]) {

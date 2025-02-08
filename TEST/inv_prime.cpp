@@ -5,7 +5,7 @@ typedef unsigned long long ull;
 
 struct IO {
 	char c; int f;
-	#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
@@ -20,7 +20,7 @@ ull n, ans;
 int op;
 
 namespace FACTOR {
-    void dfs(int p, ull num, ull fac, int up) {
+    inline void dfs(int p, ull num, ull fac, int up) {
         if (fac > n || p >= 16) return;
         if (fac == n && ans > num) {
             ans = num;
@@ -34,7 +34,7 @@ namespace FACTOR {
 }
 
 namespace NUM {
-    void dfs(int p, ull num, ull fac, int up) {
+    inline void dfs(int p, ull num, ull fac, int up) {
         if (num > n || p >= 16) return;
         if (fac > ans) {
             ans = fac;

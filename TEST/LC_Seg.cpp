@@ -8,7 +8,7 @@ const int N = 4e4 + 5, Mo = 39989, inf = 1e9;
 
 struct IO {
 	char c; int f;
-#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;

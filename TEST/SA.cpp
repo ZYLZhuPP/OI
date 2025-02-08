@@ -7,7 +7,7 @@ const int N = 1e6 + 5;
 
 struct IO {
 	char c; int f;
-#define gc() (getchar())
+#define gc() getchar()
 	inline IO& operator >> (char *x) {
 		while ((c = gc()) < 33 && ~c);
 		while (c > 32) *x++ = c, c = gc();
@@ -31,7 +31,8 @@ struct IO {
 char s[N];
 
 int sa[N], h[N], cnt[N], _[2][N], *x = _[0], *rk = _[1];
-template<class C> void SA(const C *s, int n, int m) {
+template<class C>
+inline void SA(const C *s, int n, int m) {
     int t = 0;
     For(i, 0, m) cnt[i] = 0; For (i, 1, n) cnt[rk[i] = s[i]]++;
     For (i, 1, m) cnt[i] += cnt[i - 1];

@@ -7,7 +7,7 @@ const int N = 1e5 + 5;
 
 struct IO {
 	char c; int f;
-	#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
@@ -20,7 +20,7 @@ struct IO {
 
 int n, mu[N], pri[N], psz, mip[N];
 
-int Mu(ll x) {
+inline int Mu(ll x) {
     int res = 1;
     for (ll i = 2; i * i <= x; ++i) if (!(x % i)) {
         res = -res;
@@ -30,7 +30,7 @@ int Mu(ll x) {
     return res;
 }
 
-void init_Mu() {
+inline void init_Mu() {
     mu[1] = 1;
     For (i, 2, N - 1) {
         if (!mip[i]) {

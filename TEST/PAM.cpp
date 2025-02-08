@@ -8,9 +8,9 @@ char s[N];
 
 namespace PAM {
     int to[N][26], fa[N], len[N], s_[N], tot, ed, now;
-    void init() { s_[0] = -1; len[tot = 1] = -1; fa[0] = fa[1] = 1; }
-    int find(int p) { while (s_[now] ^ s_[now - len[p] - 1]) p = fa[p]; return p; }
-    void add(const int c) {
+    inline void init() { s_[0] = -1; len[tot = 1] = -1; fa[0] = fa[1] = 1; }
+    inline int find(int p) { while (s_[now] ^ s_[now - len[p] - 1]) p = fa[p]; return p; }
+    inline void add(const int c) {
         s_[++now] = c; int p = find(ed);
         if (!to[p][c]) {
             int q = ++tot; len[q] = len[p] + 2;
@@ -18,7 +18,7 @@ namespace PAM {
         }
         ed = to[p][c];
     }
-    void ins(const char *s) {
+    inline void ins(const char *s) {
         now = 0; int n = strlen(s + 1);
         For (i, 1, n) add(s[i] - 'a');
     }

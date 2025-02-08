@@ -31,7 +31,7 @@ char a[N];
 inline int mp(const char c) { return c<'a'? 26 + c-'A': c-'a'; }
 namespace GSAM {
     int to[N << 1][52], fa[N << 1], len[N << 1], tot = 1, ed = 1;
-    int upd(int p, const int c) {
+    inline int upd(int p, const int c) {
         int q = to[p][c];
         if (len[q] == len[p] + 1) return q;
         int nq = ++tot; memcpy(to[nq], to[q], sizeof to[q]);
@@ -39,13 +39,13 @@ namespace GSAM {
         while (p && to[p][c] == q) to[p][c] = nq, p = fa[p];
         return nq;
     }
-    void add(const int c) {
+    inline void add(const int c) {
         if (to[ed][c]) return void(ed = upd(ed, c)); //one more sentence
         int p = ed, np = ed = ++tot; len[np] = len[p] + 1;
         while (p && !to[p][c]) to[p][c] = np, p = fa[p];
         fa[np] = p? upd(p, c): 1;
     }
-    void ins(const char *s) {
+    inline void ins(const char *s) {
         ed = 1; int n = strlen(s + 1);
         For (i, 1, n) add(mp(s[i]));
     }

@@ -7,7 +7,7 @@ const int N = 1e5 + 5;
 int n, fa[N], s[N], d[N];
 
 //code n as root
-void encode(int n) {
+inline void encode(int n) {
     For (i, 1, n - 2) d[fa[i]]++;
     for (int i = 1, p = 1; i <= n - 2; ++i, ++p) {
         while (p <= n && d[p]) p++;
@@ -17,7 +17,7 @@ void encode(int n) {
     }
 }
 
-void decode(int n) {
+inline void decode(int n) {
     For (i, 1, n - 2) d[s[i]]++;
     s[n - 1] = n;
     for (int i = 1, p = 1; i <= n - 2; ++i, ++p) {

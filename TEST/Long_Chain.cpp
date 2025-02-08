@@ -10,7 +10,7 @@ inline void cmax(lf &x, const lf &y) { x = y>x? y: x; }
 
 struct IO {
 	char c; int f;
-#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
@@ -26,7 +26,7 @@ lf m, ans, f[N], g[N];
 
 namespace Seg {
     lf o[N << 2];
-    void init() { fill(o, o + (N << 2), -inf); }
+    inline void init() { fill(o, o + (N << 2), -inf); }
 #define P int p, int l, int r
 #define ls p << 1
 #define rs p << 1 | 1
@@ -64,13 +64,13 @@ namespace Long {
         for (auto &e : es[u]) if (!top[e.to]) dfs1(e.to, e.to);
         dfn_[u] = tim;
     }
-    void init(int rt = 1) {
+    inline void init(int rt = 1) {
         dfs0(rt, 0); dfs1(rt, rt);
     }
 }
 using namespace Long;
 
-void solve(int u, int pre) {
+inline void solve(int u, int pre) {
     int pu = dfn[u];
     g[u] = f[pu] = 0;
     if (son[u]) solve(son[u], u), g[u] = g[son[u]] + ww[u] - m, f[pu] = -g[u];

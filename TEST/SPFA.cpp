@@ -10,7 +10,7 @@ template<class C> inline bool cmin(C &x, const C &y) { return y<x? x=y, 1: 0; }
 
 struct IO {
 	char c; int f;
-	#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;

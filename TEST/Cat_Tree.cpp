@@ -10,7 +10,7 @@ inline int ml(const int &x, const int &y) { return 1ll * x * y % Mo; }
 
 struct IO {
 	char c; int f;
-#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;

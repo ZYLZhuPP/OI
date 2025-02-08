@@ -13,7 +13,7 @@ inline ll gcd(ll a, ll b) {
     return gcd(b, a % b);
 }
 
-ll Pollard_Rho(ll n) {
+inline ll Pollard_Rho(ll n) {
     if (!(n & 1)) return 2;
     auto f = [&](ll x) -> ll { return mul(x, x, n) + 1; };
     ll s = 0, t = 0, o = 0, M = 1, m, g;

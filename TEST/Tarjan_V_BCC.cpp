@@ -9,7 +9,7 @@ template<class C> inline bool cmin(C &x, const C &y) { return y<x? x=y, 1: 0; }
 vector<int > G[N], pt[N];
 int n, m, dfn[N], low[N], tim, con, cut[N], stk[N], top;
 
-void Tarjan(int u, int pre) {
+inline void Tarjan(int u, int pre) {
     dfn[u] = low[u] = ++tim; stk[++top] = u;
     int cnt = 0;
     for (auto &v : G[u]) if (v ^ pre) {
@@ -27,7 +27,7 @@ void Tarjan(int u, int pre) {
     if (!pre && !cnt) pt[++con].push_back(u);
 }
 
-void init(int n) {
+inline void init(int n) {
     For (i, 0, n) G[i].resize(0);
     For (i, 1, con) pt[i].resize(0);
     tim = con = 0;

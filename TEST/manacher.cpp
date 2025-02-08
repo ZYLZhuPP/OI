@@ -7,7 +7,7 @@ const int N = 1e5 + 5;
 int n, p[N << 1];
 char s[N];
 
-void manacher(char *st) {
+inline void manacher(char *st) {
     int n = strlen(st);
     string s = "@";
     For (i, 0, n - 1) s += '#', s += st[i];

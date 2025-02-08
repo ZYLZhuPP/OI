@@ -12,7 +12,7 @@ inline int qPow(ll a, ll b) { ll r=1; for(;b;b>>=1,a=ml(a,a))if(b&1)r=ml(r,a); r
 
 struct IO {
 	char c; int f;
-#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
@@ -30,11 +30,11 @@ namespace min25 {
     ll n, w[N << 1];
     int g[N << 1], h[N << 1], f[N << 1], preg[N], preh[N];
 
-    int F(ll x) { x %= Mo; return mo(ml(x, x) - x); }
-    int sg(ll x) { x %= Mo; return ml(ml(x, x + 1), inv2); }
-    int sh(ll x) { x %= Mo; return ml(ml(x, x + 1), ml(mo(2 * x + 1), inv6)); }
+    inline int F(ll x) { x %= Mo; return mo(ml(x, x) - x); }
+    inline int sg(ll x) { x %= Mo; return ml(ml(x, x + 1), inv2); }
+    inline int sh(ll x) { x %= Mo; return ml(ml(x, x + 1), ml(mo(2 * x + 1), inv6)); }
 
-    void init() {
+    inline void init() {
         p[0] = 0;
         For (i, 2, P) {
             if (!mip[i]) {
@@ -49,7 +49,7 @@ namespace min25 {
 
 #define getid(x) ((x)<=P? id1[x]: id2[n / (x)])
 
-    int ask(ll x, int i) {
+    inline int ask(ll x, int i) {
         if (x <= 1 || x < p[i]) return 0;
         int res = mo(f[getid(x)] - mo(preh[i - 1] - preg[i - 1]));
 
@@ -63,7 +63,7 @@ namespace min25 {
         return res;
     }
 
-    int calc(ll x) {
+    inline int calc(ll x) {
         n = x;
         P = sqrt(n);
         init();

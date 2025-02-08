@@ -12,7 +12,7 @@ template<class C> inline void cmin(C &x, const C &y) { x = y<x? y: x; }
 
 struct IO {
 	char c; int f;
-#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
@@ -64,7 +64,7 @@ namespace VT {
 }
 using namespace VT;
 
-void solve() {
+inline void solve() {
     rFor(i, cnt, 2) {
         int u = vir[i], fu = Fa[u];
         w[u] = dep[u] - dep[fu];

@@ -16,7 +16,7 @@ namespace Dinic {
         nxt[++en] = head[u]; head[u] = en; to[en] = v; cap[en] = f;
         nxt[++en] = head[v]; head[v] = en; to[en] = u; cap[en] = 0;
     }
-    bool bfs(int n) {
+    inline bool bfs(int n) {
         memset(lev, 0, (n + 1) << 2); memcpy(cur, head, (n + 1) << 2);
         int h = 1, t = 0; lev[q[++t] = T] = 1;
         while (h <= t) {
@@ -28,7 +28,7 @@ namespace Dinic {
         }
         return 0;
     }
-    ll dfs(int u, ll r) {
+    inline ll dfs(int u, ll r) {
         if (u == T) return r;
         ll flow = 0, f; int v;
         for (int &i = cur[u]; i; i = nxt[i]) if (cap[i] && lev[v = to[i]] == lev[u] - 1) {
@@ -41,7 +41,7 @@ namespace Dinic {
         if (flow < r) lev[u] = -1;
         return flow;
     }
-    ll maxflow(int n, int s, int t) {
+    inline ll maxflow(int n, int s, int t) {
         S = s; T = t;
         ll res = 0;
         while (bfs(n)) res += dfs(S, INF);

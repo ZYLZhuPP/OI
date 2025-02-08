@@ -17,15 +17,15 @@ namespace LT {
     int tot;
 #define ls o[p].l
 #define rs o[p].r
-    void up(int p) { if (o[ls].d < o[rs].d) swap(ls, rs); o[p].d = o[rs].d + 1; }
-    int merge(int p, int q) {
+    inline void up(int p) { if (o[ls].d < o[rs].d) swap(ls, rs); o[p].d = o[rs].d + 1; }
+    inline int merge(int p, int q) {
         if (!p || !q) return p | q;
         if (o[q].w < o[p].w) swap(p, q);
         o[++tot] = o[p]; p = tot;
         rs = merge(rs, q); up(p);
         return p;
     }
-    void ins(int &p, int v, lf w) {
+    inline void ins(int &p, int v, lf w) {
         int q = ++tot; o[q] = Node(v, w);
         p = merge(p, q);
     }
@@ -35,18 +35,18 @@ using namespace LT;
 struct P {
     int x; lf v;
     P (int x = 0, lf v = 0): x(x), v(v) { }
-    bool operator < (const P &a) const { return v > a.v; } //small root heap
+    inline bool operator < (const P &a) const { return v > a.v; } //small root heap
 };
 priority_queue<P > q;
 
 struct Edges {
     vector<P > es[N];
-    void add(int u, int v, lf w) { es[u].pb({v, w}); }
+    inline void add(int u, int v, lf w) { es[u].pb({v, w}); }
 } G, T, nT;
 
 bool vis[N];
 lf dis[N];
-void Dij(int s) {
+inline void Dij(int s) {
     q.push({s, 0});
     while (!q.empty()) {
         int u = q.top().x; lf w = q.top().v; q.pop();
@@ -61,7 +61,7 @@ void Dij(int s) {
         else nT.add(e.x, u, e.v);
 }
 
-void dfs(int u, int pre) {
+inline void dfs(int u, int pre) {
     if (u ^ n) {
         for (auto &e : nT.es[u]) {
             int v = e.x; lf w = e.v;

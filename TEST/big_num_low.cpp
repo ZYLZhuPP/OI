@@ -3,7 +3,7 @@ using namespace std;
 
 struct IO {
 	char c; int f;
-	#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
@@ -53,18 +53,18 @@ struct Big {
     }
 
     template<class C>
-    Big& operator = (const C &X) {
+    inline Big& operator = (const C &X) {
         a = Big(X).a;
         return *this;
     }
 
-    Big& operator = (const Big &X) {
+    inline Big& operator = (const Big &X) {
         a = X.a;
         return *this;
     }
 
     template<class C>
-    bool operator < (const C &x) const {
+    inline bool operator < (const C &x) const {
         Big X(x);
         if (a.size() < X.a.size()) return 1;
         if (a.size() == X.a.size()) {
@@ -76,7 +76,7 @@ struct Big {
     }
 
     template<class C>
-    bool operator == (const C &x) const {
+    inline bool operator == (const C &x) const {
         Big X(x);
         if (a.size() ^ X.a.size()) return 0;
         int len = a.size();
@@ -85,7 +85,7 @@ struct Big {
     }
 
     template<class C>
-    bool operator > (const C &x) const {
+    inline bool operator > (const C &x) const {
         Big X(x);
         if (a.size() > X.a.size()) return 1;
         if (a.size() == X.a.size()) {
@@ -97,7 +97,7 @@ struct Big {
     }
 
     template<class C>
-    Big operator + (const C &x) const {
+    inline Big operator + (const C &x) const {
         Big X(x), Y(*this);
         int lx = X.a.size(), ly = Y.a.size();
         int len = max(lx, ly); X.a.resize(len, 0);
@@ -113,7 +113,7 @@ struct Big {
     }
 
     template<class C>
-    Big operator - (const C &x) const {
+    inline Big operator - (const C &x) const {
         Big X(x), Y(*this);
         int lx = X.a.size(), ly = Y.a.size();
         int len = lx; Y.a.resize(len, 0);
@@ -128,7 +128,7 @@ struct Big {
         return X;
     }
 
-    Big operator * (const int &x) const {
+    inline Big operator * (const int &x) const {
         Big res(*this);
         int len = a.size();
         int up = 0;
@@ -144,7 +144,7 @@ struct Big {
         return res;
     }
 
-    Big operator / (const int &x) const {
+    inline Big operator / (const int &x) const {
         Big res(*this);
         int len = a.size();
         int dw = 0;
@@ -156,13 +156,13 @@ struct Big {
         return res;
     }
 
-    int operator % (const int &x) const {
+    inline int operator % (const int &x) const {
         int res = 0, len = a.size();
         for (int i = len - 1; i >= 0; --i) res = (a[i] + res * Base) % x;
         return res;
     }
 
-    Big operator << (const int &x) const {
+    inline Big operator << (const int &x) const {
         Big res(*this);
         int o = x;
         while (o > 30) res = res * (1 << 30), o -= 30;
@@ -170,7 +170,7 @@ struct Big {
         return res;
     }
 
-    Big operator >> (const int &x) const {
+    inline Big operator >> (const int &x) const {
         Big res(*this);
         int o = x;
         while (o > 30) res = res / (1 << 30), o -= 30;

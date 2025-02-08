@@ -11,7 +11,7 @@ const int N = 1e5 + 5, inf = 1e9;
 
 struct IO {
 	char c; int f;
-#define gc() (getchar())
+#define gc() getchar()
 	template<class C>
 	inline IO& operator >> (C &x) {
 		x = 0; f = 1;
@@ -55,14 +55,14 @@ namespace KR {
     int pa[N << 1], tot, dfn[N << 1], dfn_[N << 1], tim, fa[N << 1][20], val[N << 1];
     vector<int > T[N << 1];
     inline int find(int u) { return pa[u]^u? pa[u] = find(pa[u]): u; }
-    void dfs(int u, int pre) {
+    inline void dfs(int u, int pre) {
         dfn[u] = ++tim, rt[tim] = rt[tim - 1];
         if (u <= n) Seg::upd(rt[tim], 1, inf, h[u]);
         For (i, 1, 19) fa[u][i] = fa[fa[u][i - 1]][i - 1];
         for (auto &v : T[u]) dfs(v, u);
         dfn_[u] = tim;
     }
-    void build() {
+    inline void build() {
         val[0] = inf + 1;
         tot = n;
         For (i, 1, n) pa[i] = i;
@@ -79,7 +79,7 @@ namespace KR {
         }
         rFor (i, tot, 1) if (!dfn[i]) dfs(i, 0);
     }
-    int jump(int u, int x) {
+    inline int jump(int u, int x) {
         rFor (i, 19, 0) if (val[fa[u][i]] <= x) u = fa[u][i];
         return u;
     }

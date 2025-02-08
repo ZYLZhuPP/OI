@@ -5,7 +5,7 @@ using namespace std;
 
 typedef complex<double > com;
 
-void reverse(com a[], int n) {
+inline void reverse(com a[], int n) {
     vector<int > rev(n);
     for (int i = 0; i < n; i++) {
         rev[i] = (rev[i >> 1] >> 1) | ((i & 1) * (n >> 1));
@@ -13,7 +13,7 @@ void reverse(com a[], int n) {
     }
 }
 
-void FFT(com a[], int n, int inv) {
+inline void FFT(com a[], int n, int inv) {
     reverse(a, n);
     for (int m = 1; m < n; m <<= 1) {
         com o(cos(pi / m), inv * sin(pi / m));

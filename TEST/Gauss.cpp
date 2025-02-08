@@ -3,7 +3,7 @@ using namespace std;
 
 const double eps = 1e-8;
 
-void Gauss(vector<vector<double > > &a, int n, int m) {
+inline void Gauss(vector<vector<double > > &a, int n, int m) {
     int r; double temp;
     for (int i = 0; i < n; i++) {
         r = i;
