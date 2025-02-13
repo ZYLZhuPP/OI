@@ -62,14 +62,14 @@ int main() {
         switch (k) {
         case 0:
             pick(u, v);
-			printf("%d\n", o[u].v); 
-			break;
+	    	printf("%d\n", o[u].v); 
+	    	break;
         case 1:
             link(u, v); 
-			break;
+	    	break;
         case 2:
             cut(u, v); 
-			break;
+	    	break;
         case 3:
         	splay(u);
         	val[u] = v;

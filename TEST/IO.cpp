@@ -24,26 +24,26 @@ struct IO {
 #define gc() ((S==T && (T=(S=ibuf)+fread(ibuf, 1, BufS, stdin)), S==T)? EOF: *S++)
 	template<class C>
 	inline IO& operator >> (C &x) {
-		x = 0; f = 1;
-		while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
-		while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
-		x *= f; return *this;
+    	x = 0; f = 1;
+    	while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
+    	while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
+    	x *= f; return *this;
 	}
 	inline IO& operator >> (char &x){
-		while ((c = gc()) < 33 && ~c);
-		x = c; return *this;
+    	while ((c = gc()) < 33 && ~c);
+    	x = c; return *this;
 	}
 	inline IO& operator >> (char *x){
-		while ((c = gc()) < 33 && ~c);
-		while (c > 32) *x++ = c, c = gc();
+    	while ((c = gc()) < 33 && ~c);
+    	while (c > 32) *x++ = c, c = gc();
 		*x = 0; return *this;
 	}
 	inline IO& operator >> (double &x){
-		double p(1); x = 0; f = 1;
-		while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
-		while (isdigit(c)) x = x * 10 + (c ^ 48), c = gc();
-		if (!(c ^ 46)) while (isdigit(c = gc())) x += (c ^ 48) * (p /= 10);
-		x *= f; return *this;
+    	double p(1); x = 0; f = 1;
+    	while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
+    	while (isdigit(c)) x = x * 10 + (c ^ 48), c = gc();
+    	if (!(c ^ 46)) while (isdigit(c = gc())) x += (c ^ 48) * (p /= 10);
+    	x *= f; return *this;
 	}
 	char obuf[BufS]; int E, st[66], t;
 #define pc(c) (obuf[E==BufS && (E-=fwrite(obuf, 1, BufS, stdout)), E++]=c)

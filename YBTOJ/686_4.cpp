@@ -13,10 +13,10 @@ struct IO {
 #define gc() (getchar())
 	template<class C>
 	inline IO& operator >> (C &x) {
-		x = 0; f = 1;
-		while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
-		while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
-		x *= f; return *this;
+        x = 0; f = 1;
+        while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
+        while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
+        x *= f; return *this;
 	}
 	inline IO& operator >> (char *x) {
 		while ((c = gc()) < 33 && ~c);

@@ -13,10 +13,10 @@ struct IO {
     #define pc(c) (obuf[top==BufS? fwrite(obuf, 1, BufS, stdout), !(top=1): top++]=c)
 	template<class C>
 	inline IO& operator >> (C &x) {
-		x = 0; f = 1;
-		while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
-		while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
-		x *= f; return *this;
+        x = 0; f = 1;
+        while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
+        while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
+        x *= f; return *this;
 	}
 	inline void flush() { fwrite(obuf, 1, top, stdout); }
     ~IO() { flush(); }

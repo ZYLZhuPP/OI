@@ -13,10 +13,10 @@ struct IO {
 	char c; int f;
 #define gc() getchar()
 	IO& operator >> (int &x) {
-		x = 0; f = 1;
-		while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
-		while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
-		x *= f; return *this;
+        x = 0; f = 1;
+        while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
+        while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
+        x *= f; return *this;
 	}
 } io; 
 

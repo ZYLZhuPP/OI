@@ -19,32 +19,32 @@ template<class C> inline bool cmax(C &x, const C &y) { return y>x? x=y, 1: 0; }
 template<class C> inline bool cmin(C &x, const C &y) { return y<x? x=y, 1: 0; }
 
 struct IO {
-	char c; int f;
+    char c; int f;
 #define gc() getchar()
-	template<class C>
-	inline IO& operator >> (C &x) {
-		x = 0; f = 1;
-		while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
-		while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
-		x *= f; return *this;
-	}
-	inline IO& operator >> (char &x) {
-		while ((c = gc()) < 33 && ~c);
-		x = c; return *this;
-	}
-	inline IO& operator >> (char *x) {
-		while ((c = gc()) < 33 && ~c);
-		while (c > 32) *x++ = c, c = gc();
-		*x = 0; return *this;
-	}
-	inline IO& operator >> (double &x) {
-		double p(1); x = 0; f = 1;
-		while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
-		while (isdigit(c)) x = x * 10 + (c ^ 48), c = gc();
-		if (!(c ^ 46)) while (isdigit(c = gc())) x += (c ^ 48) * (p /= 10);
-		x *= f; return *this;
-	}
-	int st[66], t;
+    template<class C>
+    inline IO& operator >> (C &x) {
+        x = 0; f = 1;
+        while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
+        while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
+        x *= f; return *this;
+    }
+    inline IO& operator >> (char &x) {
+        while ((c = gc()) < 33 && ~c);
+        x = c; return *this;
+    }
+    inline IO& operator >> (char *x) {
+        while ((c = gc()) < 33 && ~c);
+        while (c > 32) *x++ = c, c = gc();
+        *x = 0; return *this;
+    }
+    inline IO& operator >> (double &x) {
+        double p(1); x = 0; f = 1;
+        while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
+        while (isdigit(c)) x = x * 10 + (c ^ 48), c = gc();
+        if (!(c ^ 46)) while (isdigit(c = gc())) x += (c ^ 48) * (p /= 10);
+        x *= f; return *this;
+    }
+    int st[66], t;
 #define pc(c) putchar(c)
     template<class C>
     inline IO& operator << (C x) {
@@ -61,7 +61,7 @@ struct IO {
         while (*x) pc(*x++);
         return *this;
     }
-	inline bool operator ~ () const { return ~c; }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int main() {
@@ -69,6 +69,6 @@ int main() {
     scanf("%s", a);
     io << a;
     io << "123";
-	return 0;
+    return 0;
 }
 //2024.8.10_
