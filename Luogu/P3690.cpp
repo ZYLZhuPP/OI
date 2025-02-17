@@ -4,16 +4,16 @@ using namespace std;
 typedef long long ll;
 
 struct IO {
-	static const int BufS=1<<21;
-	char buf[BufS], *S, *T, c, f;
-	#define gc() ((S==T && (T=(S=buf)+fread(buf, 1, BufS, stdin)), S==T)? EOF: *S++)
-	template<class C>
-	inline IO& operator >> (C &x){
-		for(f=1; !isdigit(c); c=gc()) f|=-!(c^45);
-		for(x=0; isdigit(c); c=gc()) x=(x<<3)+(x<<1)+(c^48); x*=f;
-		return *this;
-	}
-	inline bool operator ~ (){while(c<33 && c^EOF) c=gc(); return c^EOF;}
+    static const int BufS=1<<21;
+    char buf[BufS], *S, *T, c, f;
+#define gc() ((S==T && (T=(S=buf)+fread(buf, 1, BufS, stdin)), S==T)? EOF: *S++)
+    template<class C>
+    inline IO& operator >> (C &x){
+        for(f=1; !isdigit(c); c=gc()) f|=-!(c^45);
+        for(x=0; isdigit(c); c=gc()) x=(x<<3)+(x<<1)+(c^48); x*=f;
+        return *this;
+    }
+    inline bool operator ~ (){while(c<33 && c^EOF) c=gc(); return c^EOF;}
 }io;
 
 struct LCT{
@@ -41,7 +41,7 @@ void pushup(ll p) { val(p) = val(lc(p)) ^ val(rc(p)) ^ a[p]; }
 
 void pushdown(ll p) {
     if (tag(p)) 
-		mark_swap(lc(p)), mark_swap(rc(p)), tag(p) = 0;
+        mark_swap(lc(p)), mark_swap(rc(p)), tag(p) = 0;
 }
 
 bool isson(ll p) { return p ^ son(fa(p), 0); }
@@ -54,21 +54,21 @@ void rotate(ll p) {
 }
 
 void pushall(int p) {
-	if (!isroot(p))
-		pushall(fa(p));
-	pushdown(p);
+    if (!isroot(p))
+        pushall(fa(p));
+    pushdown(p);
 }
 
 void splay(ll p) {
     pushall(p);
     for (ll f; f = fa(p), !isroot(p); rotate(p)) 
-		if(!isroot(f)) 
-			rotate(isson(p) ^ isson(f)? p: f);
+        if(!isroot(f)) 
+            rotate(isson(p) ^ isson(f)? p: f);
 }
 
 void access(ll p) {
     for (ll x = 0; p; p = fa(x = p)) 
-		splay(p), rc(p) = x, pushup(p);
+        splay(p), rc(p) = x, pushup(p);
 }
 
 void makeroot(ll p) {
@@ -78,7 +78,7 @@ void makeroot(ll p) {
 ll findroot(ll p) {
     access(p); splay(p); pushdown(p);
     while (lc(p)) 
-		pushdown(p = lc(p));
+        pushdown(p = lc(p));
     splay(p);
     return p;
 }
@@ -86,15 +86,15 @@ ll findroot(ll p) {
 void link(ll u, ll v) {
     makeroot(u);
     if (findroot(v) ^ u) 
-		fa(u) = v;
+        fa(u) = v;
 }
 
 void cut(ll u, ll v) {
-	makeroot(u);
-	if (findroot(v) == u && fa(v) == u && !rc(v)) {
-		fa(v) = lc(u) = 0;
-		pushup(u);
-	}
+    makeroot(u);
+    if (findroot(v) == u && fa(v) == u && !rc(v)) {
+        fa(v) = lc(u) = 0;
+        pushup(u);
+    }
 }
 
 void pick(ll u, ll v) {
@@ -109,27 +109,26 @@ void init() {
 int main() {
     io >> n >> m;
     init();
-    for (int i = 1; i <= n; i++) 
-		io >> a[i];
-		
+    for (int i = 1; i <= n; i++) io >> a[i];
+
     while (m--) {
         ll k, u, v;
         io >> k >> u >> v;
         switch (k) {
         case 0:
             pick(u, v); 
-			printf("%lld\n", val(v)); 
-			break;
+            printf("%lld\n", val(v)); 
+            break;
         case 1:
             link(u, v); 
-			break;
+            break;
         case 2:
             cut(u, v); 
-			break;
+            break;
         case 3:
-        	splay(u);
-        	a[u] = v; 
-        	break;
+            splay(u);
+            a[u] = v; 
+            break;
         }
     }
     

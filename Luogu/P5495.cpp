@@ -9,10 +9,10 @@ int n, vis[N];
 uint seed, a[N], ans;
 
 inline uint getnext(){
-	seed ^= seed << 13;
-	seed ^= seed >> 17;
-	seed ^= seed << 5;
-	return seed;
+    seed ^= seed << 13;
+    seed ^= seed >> 17;
+    seed ^= seed << 5;
+    return seed;
 }
 
 int main() {

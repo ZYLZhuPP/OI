@@ -7,16 +7,16 @@ const int N = 2e5 + 10;
 typedef long long ll;
 
 struct IO {
-	char c; int f;
-	#define gc() (getchar())
-	template<class C>
-	inline IO& operator >> (C &x) {
+    char c; int f;
+#define gc() getchar()
+    template<class C>
+    inline IO& operator >> (C &x) {
         x = 0; f = 1;
         while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
-	}
-	inline bool operator ~ () {return ~c;}
+    }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 long long n, siz[N], dp[N], f[N], ans;
@@ -39,7 +39,7 @@ void dfs2(int u, int pre) {
 }
 int main() {
     io >> n;
-	int u, v;
+    int u, v;
     for (int i = 1; i < n; i++) io >> u >> v, T[u].pb(v), T[v].pb(u);
     dfs(1, 0);
     f[1] = dp[1];

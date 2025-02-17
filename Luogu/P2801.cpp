@@ -32,14 +32,14 @@ void print(int x)
     putchar(x % 10 + '0');
 }
 
-int n, m, len, cnt; // �鳤����ĸ���
-int a[N], loc[N];   // ÿ��a[i]������ı��
+int n, m, len, cnt;
+int a[N], loc[N];
 struct Kuai
 {
-    int l, r, tg; // ������Ҷ˵㣬�ܺͣ����
+    int l, r, tg;
 } k[N];
 vector<int> v[N];
-void sortt(int x) // �Ե�x��������
+void sortt(int x)
 {
     v[x].clear();
     for (int i = k[x].l; i <= k[x].r; i++)
@@ -57,13 +57,13 @@ void modify(int l, int r, int val)
         return;
     }
     for (int i = l; i <= k[idx].r; i++)
-        a[i] += val; // ���ɢ��
+        a[i] += val;
     sortt(idx);
     for (int i = k[idy].l; i <= r; i++)
-        a[i] += val; // �ұ�ɢ��
+        a[i] += val;
     sortt(idy);
     for (int i = idx + 1; i < idy; i++)
-        k[i].tg += val; // ����
+        k[i].tg += val;
 }
 int query(int l, int r, int val)
 {
@@ -81,11 +81,10 @@ int query(int l, int r, int val)
     for (int i = idx + 1; i < idy; i++)
     {
         ans += v[i].end() - lower_bound(v[i].begin(), v[i].end(), val - k[i].tg);
-        // Ҫ��tg��ԭ���������޸�ʱ����ֱ�Ӽӣ����Ǹ�tag��ǣ�����C�������tag�ģ�Ҫ��ȥ
     }
     return ans;
 }
-main()
+signed main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0), cout.tie(0);

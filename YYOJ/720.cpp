@@ -13,16 +13,16 @@ int head[Mo],nxt[N],id[N],hashsiz,t,ans,same;
 
 template<class T>
 inline bool read(T &x){
-	x=0;
-	int f=1;
-	char ch=gc();
-	for(; !isdigit(ch); ch=gc())
-		if(!(ch^'-')) f=-1;
-		else if(!(ch^EOF)) return 0;
-	for(; isdigit(ch); ch=gc())
-		x=(x<<3)+(x<<1)+(ch^48);
-	x*=f;
-	return 1;
+    x=0;
+    int f=1;
+    char ch=gc();
+    for(; !isdigit(ch); ch=gc())
+        if(!(ch^'-')) f=-1;
+        else if(!(ch^EOF)) return 0;
+    for(; isdigit(ch); ch=gc())
+        x=(x<<3)+(x<<1)+(ch^48);
+    x*=f;
+    return 1;
 }
 
 void insert(ull x, int _id){

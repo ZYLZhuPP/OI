@@ -9,7 +9,7 @@ typedef vector<lf > vec;
 typedef vector<vec > vvec;
 
 struct mat : vvec {
-    static const lf eps = 1e-9;
+    static constexpr lf eps = 1e-9;
     using vvec::vvec;
     mat() { }
     mat(const int &n, const int &m, const lf &x = 0) { resize(n, vec(m, x)); }

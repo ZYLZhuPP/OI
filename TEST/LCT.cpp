@@ -6,8 +6,8 @@ const int N = 1e5 + 5;
 
 struct IO {
     static const int BufS=1<<21;
-	char buf[BufS], *S, *T, c, f;
-	#define gc() ((S==T && (T=(S=buf)+fread(buf, 1, BufS, stdin)), S==T)? EOF: *S++)
+    char buf[BufS], *S, *T, c, f;
+#define gc() ((S==T && (T=(S=buf)+fread(buf, 1, BufS, stdin)), S==T)? EOF: *S++)
     template<class C>
     inline IO& operator >> (C &x) {
         x = 0; f = 1;
@@ -15,7 +15,7 @@ struct IO {
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
     }
-    inline bool operator ~ () { return ~c; }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n, m, val[N];
@@ -55,25 +55,25 @@ using namespace LCT;
 int main() {
     io >> n >> m;
     For (i, 1, n) io >> val[i];
-	
+
     while (m--) {
         int k, u, v;
         io >> k >> u >> v;
         switch (k) {
         case 0:
             pick(u, v);
-	    	printf("%d\n", o[u].v); 
-	    	break;
+            printf("%d\n", o[u].v); 
+            break;
         case 1:
             link(u, v); 
-	    	break;
+            break;
         case 2:
             cut(u, v); 
-	    	break;
+            break;
         case 3:
-        	splay(u);
-        	val[u] = v;
-        	break;
+            splay(u);
+            val[u] = v;
+            break;
         }
     }
 

@@ -7,7 +7,7 @@ class CamaraOutInside: public Camera
 {
 public:
     CamaraOutInside() {};
-	Ray GenerateRay(double left, double top, double right, double bottom, Random::RAND_ENGINE *eng = NULL) const
+    Ray GenerateRay(double left, double top, double right, double bottom, Random::RAND_ENGINE *eng = NULL) const
     {
         double
         x = Random::randDouble(eng, left, right),

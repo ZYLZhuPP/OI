@@ -13,16 +13,16 @@ int bkt[Mo];
 
 template<class T>
 inline bool read(T &x){
-	x=0;
-	int f=1;
-	char ch=gc();
-	for(; !isdigit(ch); ch=gc())
-		if(!(ch^'-')) f=-1;
-		else if(!(ch^EOF)) return 0;
-	for(; isdigit(ch); ch=gc())
-		x=(x<<3)+(x<<1)+(ch^48);
-	x*=f;
-	return 1;
+    x=0;
+    int f=1;
+    char ch=gc();
+    for(; !isdigit(ch); ch=gc())
+        if(!(ch^'-')) f=-1;
+        else if(!(ch^EOF)) return 0;
+    for(; isdigit(ch); ch=gc())
+        x=(x<<3)+(x<<1)+(ch^48);
+    x*=f;
+    return 1;
 }
 
 void init(){
@@ -48,7 +48,7 @@ int ok(int k){
         ull p1=getf1(i*k-k+1,i*k);
         ull p2=getf2(i*k-k+1,i*k);
         if((bkt[p1]^k) && (bkt[p2]^k)) res++;
-	bkt[p1]=bkt[p2]=k;
+    bkt[p1]=bkt[p2]=k;
     }
     return res;
 }

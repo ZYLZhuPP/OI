@@ -14,8 +14,8 @@ int main(){
     len = st.length();
     
     for (int i = 0; i < len; i++) 
-		f[i][i]=1;
-		
+        f[i][i]=1;
+        
     for (int i = 2; i <= len; i++) {
         for(int j = 0; i + j - 1 < len; j++) {
             int l = j, r = i + j - 1;
@@ -25,7 +25,7 @@ int main(){
             }
             f[l][r] = f[l+1][r-1];
             for (int k = l + 1; k <= r - 1; k++) 
-				if (st[k] == st[l]) (f[l][r]+=(f[l][k]*f[k+1][r-1])%Mo)%=Mo;
+                if (st[k] == st[l]) (f[l][r]+=(f[l][k]*f[k+1][r-1])%Mo)%=Mo;
         }
     }
     

@@ -8,14 +8,14 @@ const int N = 3e3 + 5;
 const ull P = 1331;
 
 struct IO {
-	char c; int f;
+    char c; int f;
 #define gc() getchar()
-	IO& operator >> (int &x) {
+    IO& operator >> (int &x) {
         x = 0; f = 1;
         while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
-	}
+    }
 } io; 
 
 int n, a[N], cnt[N], ans, lst[N][N];

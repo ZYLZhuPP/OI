@@ -7,20 +7,20 @@ const int N=1e5+5;
 const ll INF=LLONG_MAX/2;
 
 struct IO {
-	static const int BufS=1<<21;
-	char buf[BufS], *S, *T, c, f;
-	#define gc() ((S==T && (T=(S=buf)+fread(buf, 1, BufS, stdin)), S==T)? EOF: *S++)
-	template<class C>
-	inline IO& operator >> (C &x){
-		for(f=1; !isdigit(c); c=gc()) if(!(c^45)) f=-1;
-		for(x=0; isdigit(c); c=gc()) x=(x<<3)+(x<<1)+(c^48); x*=f;
-		return *this;
-	}
-	inline bool operator ~ (){while(c<33 && c^EOF) c=gc(); return c^EOF;}
+    static const int BufS=1<<21;
+    char buf[BufS], *S, *T, c, f;
+#define gc() ((S==T && (T=(S=buf)+fread(buf, 1, BufS, stdin)), S==T)? EOF: *S++)
+    template<class C>
+    inline IO& operator >> (C &x){
+        for(f=1; !isdigit(c); c=gc()) if(!(c^45)) f=-1;
+        for(x=0; isdigit(c); c=gc()) x=(x<<3)+(x<<1)+(c^48); x*=f;
+        return *this;
+    }
+    inline bool operator ~ (){while(c<33 && c^EOF) c=gc(); return c^EOF;}
 }io;
 
 struct SMT{
-	ll ma,sum,ad;
+    ll ma,sum,ad;
 }tr[4*N];
 
 int pot[N];
@@ -36,48 +36,48 @@ ll Ma,Sum;
 
 void add(int u,int v)
 {
-	nxt[++t]=head[u];
-	to[t]=v;
-	head[u]=t;
+    nxt[++t]=head[u];
+    to[t]=v;
+    head[u]=t;
 }
 
 void dfs1(int u,int pre,int deep)
 {
-	fa[u]=pre;
-	siz[u]=1;
-	dep[u]=deep;
-	for(int i=head[u];i;i=nxt[i])if(to[i]^pre){
-		int v=to[i];
-		dfs1(v,u,deep+1);
-		siz[u]+=siz[v];
-		if(siz[son[u]]<siz[v])
-			son[u]=v;
-	}
+    fa[u]=pre;
+    siz[u]=1;
+    dep[u]=deep;
+    for(int i=head[u];i;i=nxt[i])if(to[i]^pre){
+        int v=to[i];
+        dfs1(v,u,deep+1);
+        siz[u]+=siz[v];
+        if(siz[son[u]]<siz[v])
+            son[u]=v;
+    }
 }
 
 void dfs2(int u)
 {
-	id[u]=++id[0];
-	pot[id[u]]=u;
-	if(son[u]){
-		int v=son[u];
-		top[v]=top[u];
-		dfs2(v);
-	}
-	for(int i=head[u];i;i=nxt[i])if(!top[to[i]]){
-		int v=to[i];
-		top[v]=v;
-		dfs2(v);
-	}
-	end_id[u]=id[u]+siz[u]-1;
-	end_p[u]=pot[end_id[u]];
+    id[u]=++id[0];
+    pot[id[u]]=u;
+    if(son[u]){
+        int v=son[u];
+        top[v]=top[u];
+        dfs2(v);
+    }
+    for(int i=head[u];i;i=nxt[i])if(!top[to[i]]){
+        int v=to[i];
+        top[v]=v;
+        dfs2(v);
+    }
+    end_id[u]=id[u]+siz[u]-1;
+    end_p[u]=pot[end_id[u]];
 } 
 
 void init()
 {
-	dfs1(root,0,0);
-	top[root]=root;
-	dfs2(root);
+    dfs1(root,0,0);
+    top[root]=root;
+    dfs2(root);
 }
 
 void pushup(int now)
@@ -88,23 +88,23 @@ void pushup(int now)
 
 void pushdown(int now,int l,int r)
 {
-	ll ad=tr[now].ad;
-	int mid=(l+r)>>1;
-	tr[nowl].sum+=(mid-l+1)*ad;
-	tr[nowl].ma+=ad;
-	tr[nowl].ad+=ad;
-	tr[nowr].sum+=(r-mid)*ad;
-	tr[nowr].ma+=ad;
-	tr[nowr].ad+=ad;
-	tr[now].ad=0;
+    ll ad=tr[now].ad;
+    int mid=(l+r)>>1;
+    tr[nowl].sum+=(mid-l+1)*ad;
+    tr[nowl].ma+=ad;
+    tr[nowl].ad+=ad;
+    tr[nowr].sum+=(r-mid)*ad;
+    tr[nowr].ma+=ad;
+    tr[nowr].ad+=ad;
+    tr[now].ad=0;
 }
 
 void build(int now,int l,int r)
 {
     if(l==r){
-		tr[now].ma=tr[now].sum=w[pot[l]];
-		return;
-	}
+        tr[now].ma=tr[now].sum=w[pot[l]];
+        return;
+    }
     int mid=l+r>>1;
     build(nowl,l,mid);
     build(nowr,mid+1,r);
@@ -113,30 +113,30 @@ void build(int now,int l,int r)
 
 void find(int now,int l,int r,int x,int y)
 {
-	if(l>y||r<x)
-		return;
-	if(l>=x&&r<=y){
-		Sum+=tr[now].sum;
-		Ma=max(Ma,tr[now].ma);
-		return;
-	}
-	pushdown(now,l,r);
-	int mid=l+r>>1;
-	find(nowl,l,mid,x,y);
-	find(nowr,mid+1,r,x,y);
+    if(l>y||r<x)
+        return;
+    if(l>=x&&r<=y){
+        Sum+=tr[now].sum;
+        Ma=max(Ma,tr[now].ma);
+        return;
+    }
+    pushdown(now,l,r);
+    int mid=l+r>>1;
+    find(nowl,l,mid,x,y);
+    find(nowr,mid+1,r,x,y);
 }
 
 void norm_update(int now,int l,int r,int goal,ll ad)
 {
-	if(l>goal||r<goal)
-		return;
-	if(l==r){
-		tr[now].ma+=ad;
-		tr[now].sum+=ad;
-		return;
-	}
-	pushdown(now,l,r);
-	int mid=l+r>>1;
+    if(l>goal||r<goal)
+        return;
+    if(l==r){
+        tr[now].ma+=ad;
+        tr[now].sum+=ad;
+        return;
+    }
+    pushdown(now,l,r);
+    int mid=l+r>>1;
     norm_update(nowl,l,mid,goal,ad);
     norm_update(nowr,mid+1,r,goal,ad);
     pushup(now);
@@ -144,79 +144,79 @@ void norm_update(int now,int l,int r,int goal,ll ad)
 
 void inr_update(int now,int l,int r,int x,int y,ll ad)
 {
-	if(l>y||r<x)
-		return;
-	if(l>=x&&r<=y){
-		tr[now].sum+=ad*(r-l+1);
-		tr[now].ma+=ad;
-		tr[now].ad+=ad;
-		return;
-	}
-	pushdown(now,l,r);
-	int mid=l+r>>1;
-	inr_update(nowl,l,mid,x,y,ad);
-	inr_update(nowr,mid+1,r,x,y,ad);
-	pushup(now);
+    if(l>y||r<x)
+        return;
+    if(l>=x&&r<=y){
+        tr[now].sum+=ad*(r-l+1);
+        tr[now].ma+=ad;
+        tr[now].ad+=ad;
+        return;
+    }
+    pushdown(now,l,r);
+    int mid=l+r>>1;
+    inr_update(nowl,l,mid,x,y,ad);
+    inr_update(nowr,mid+1,r,x,y,ad);
+    pushup(now);
 }
 
 void tr_update(int u,ll ad)
 {
-	inr_update(1,1,n,id[u],end_id[u],ad);
+    inr_update(1,1,n,id[u],end_id[u],ad);
 }
 
 void pt_update(int u,ll ad)
 {
-	norm_update(1,1,n,id[u],ad);
+    norm_update(1,1,n,id[u],ad);
 }
 
 void l_query(int u,int v)
 {
-	Ma=-INF;
-	Sum=0;
-	int tu=top[u],tv=top[v];
-	while(tu^tv){
-		if(dep[tu]<dep[tv]){
-			swap(u,v);
-			swap(tu,tv);
-		}
-		find(1,1,n,id[tu],id[u]);
-		u=fa[tu];
-		tu=top[u];
-	}
-	if(dep[u]>dep[v])
-		swap(u,v);
-	Lca=u;
-	find(1,1,n,id[u],id[v]);
+    Ma=-INF;
+    Sum=0;
+    int tu=top[u],tv=top[v];
+    while(tu^tv){
+        if(dep[tu]<dep[tv]){
+            swap(u,v);
+            swap(tu,tv);
+        }
+        find(1,1,n,id[tu],id[u]);
+        u=fa[tu];
+        tu=top[u];
+    }
+    if(dep[u]>dep[v])
+        swap(u,v);
+    Lca=u;
+    find(1,1,n,id[u],id[v]);
 } 
 
 int main()
 {
-	io>>n>>q;
-	root=1;
-	for(int i=1; i<=n; i++) io>>w[i];
-	for(int i=1; i<n; i++){
-		int u,v;
-		io>>u>>v;
-		add(u,v);
-		add(v,u);
-	}
-	init();
-	build(1,1,n);
-	while(q--){
-		int k,u;
-		io>>k;
-		ll ad;
-		if(k==1){
-			io>>u>>ad;
-			pt_update(u,ad);
-		}else if(k==2){
-			io>>u>>ad;
-			tr_update(u,ad);
-		}else{
-			io>>u;
-			l_query(u,root);
-			printf("%lld\n", Sum);
-		}
-	}
-	return 0;
+    io>>n>>q;
+    root=1;
+    for(int i=1; i<=n; i++) io>>w[i];
+    for(int i=1; i<n; i++){
+        int u,v;
+        io>>u>>v;
+        add(u,v);
+        add(v,u);
+    }
+    init();
+    build(1,1,n);
+    while(q--){
+        int k,u;
+        io>>k;
+        ll ad;
+        if(k==1){
+            io>>u>>ad;
+            pt_update(u,ad);
+        }else if(k==2){
+            io>>u>>ad;
+            tr_update(u,ad);
+        }else{
+            io>>u;
+            l_query(u,root);
+            printf("%lld\n", Sum);
+        }
+    }
+    return 0;
 }

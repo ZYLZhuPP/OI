@@ -18,5 +18,5 @@ void work(long long x) {
 vector<int > construct_permutation(long long k) {
     ans.resize(n = 0);
     work(k);
-	return ans;
+    return ans;
 }

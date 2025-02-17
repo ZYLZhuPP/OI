@@ -11,33 +11,33 @@ inline void mul(int &x, const int &y) { x = ml(x, y); }
 inline int qPow(int a, int b) { int r = 1; for (; b; mul(a, a), b >>= 1) if (b & 1) mul(r, a); return r; }
 
 struct IO {
-	char c; int f;
+    char c; int f;
 #define gc() getchar()
-	template<class C>
-	inline IO& operator >> (C &x) {
+    template<class C>
+    inline IO& operator >> (C &x) {
         x = 0; f = 1;
         while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
-	}
-	inline bool operator ~ () const { return ~c; }
+    }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n, fac[N], ivf[N];
 
 inline void init() {
-	fac[0] = 1;
-	For (i, 1, N - 1) fac[i] = ml(fac[i - 1], i);
-	ivf[N - 1] = qPow(fac[N - 1], Mo - 2);
-	rFor (i, N - 1, 1) ivf[i - 1] = ml(ivf[i], i);
+    fac[0] = 1;
+    For (i, 1, N - 1) fac[i] = ml(fac[i - 1], i);
+    ivf[N - 1] = qPow(fac[N - 1], Mo - 2);
+    rFor (i, N - 1, 1) ivf[i - 1] = ml(ivf[i], i);
 }
 
 inline int C(int n, int m) { return ml(fac[n], ml(ivf[n - m], ivf[m])); }
 
 int main() {
-	init();
-	io >> n;
-	printf("%d", mo(ml(8, C(2 * n, n)) - mo(ml(3, ml(n, n)) + mo(mo(2 * n) + 7))));
-	
-	return 0; 
+    init();
+    io >> n;
+    printf("%d", mo(ml(8, C(2 * n, n)) - mo(ml(3, ml(n, n)) + mo(mo(2 * n) + 7))));
+    
+    return 0; 
 }

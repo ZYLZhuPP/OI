@@ -19,7 +19,7 @@ struct IO {
         x = c; return *this;
     }
 #define pc(c) putchar(c)
-    inline bool operator ~ () { return ~c; }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int c, t, n, m, x, y, fa[N], id[N], val[N], ans, tot;

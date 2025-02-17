@@ -9,36 +9,36 @@ ll x,y,m,n,L,k,p,g,T,ans;
 
 template<class T>
 inline bool read(T &x){
-	x=0;
-	int f=1;
-	char ch=gc();
-	for(; !isdigit(ch); ch=gc())
-		if(!(ch^'-')) f=-1;
-		else if(!(ch^EOF)) return 0;
-	for(; isdigit(ch); ch=gc()) x=(x<<3)+(x<<1)+(ch^48);
-	x*=f;
-	return 1; 
+    x=0;
+    int f=1;
+    char ch=gc();
+    for(; !isdigit(ch); ch=gc())
+        if(!(ch^'-')) f=-1;
+        else if(!(ch^EOF)) return 0;
+    for(; isdigit(ch); ch=gc()) x=(x<<3)+(x<<1)+(ch^48);
+    x*=f;
+    return 1; 
 }
 
 void ex_gcd(ll x, ll y, ll &g, ll &a, ll &b){
-	if(!y){
-		a=1, b=0;
-		g=x;
-		return;
-	}
-	ll ret;
-	ex_gcd(y,x%y,g,ret,a);
-	b=ret-(x/y)*a;
+    if(!y){
+        a=1, b=0;
+        g=x;
+        return;
+    }
+    ll ret;
+    ex_gcd(y,x%y,g,ret,a);
+    b=ret-(x/y)*a;
 }
 
 int main(){
-	read(x); read(y); read(m); read(n); read(L);
+    read(x); read(y); read(m); read(n); read(L);
     if(m<n) swap(n,m), swap(x,y);
-	ex_gcd(m-n,L,g,T,k);
-	if((y-x)%g==0){
-		ll p=L/g;
-		ans=(T*(y-x)/g%p+p)%p;
-		printf("%lld", ans);
-	}else printf("Impossible");
-	return 0;
+    ex_gcd(m-n,L,g,T,k);
+    if((y-x)%g==0){
+        ll p=L/g;
+        ans=(T*(y-x)/g%p+p)%p;
+        printf("%lld", ans);
+    }else printf("Impossible");
+    return 0;
 } 

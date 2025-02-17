@@ -33,25 +33,25 @@ namespace Light
     Vector3 SceneRayTrace::RayTrace(const Ray & ray)
     {
         Vector3 res = MakeVector3(); //本次采样返回的亮度
-		double d;                    //用于记录光线起点和与场景交点的距离
-		Vector4 vIn = -ray.d;        //入射方向
-		Vector4 vNorm;               //交点表面法向量
-		Vector4 vPoint;              //交点坐标
-		Surface surface;             //记录得到的表面信息
-		d = pModel->GetIntersection(ray, &vNorm, &surface); //调用场景模型类的求交函数
-		if (!std::isinf(d)) // 求交函数返回 INFINITY，则求交失败
-		{
+        double d;                    //用于记录光线起点和与场景交点的距离
+        Vector4 vIn = -ray.d;        //入射方向
+        Vector4 vNorm;               //交点表面法向量
+        Vector4 vPoint;              //交点坐标
+        Surface surface;             //记录得到的表面信息
+        d = pModel->GetIntersection(ray, &vNorm, &surface); //调用场景模型类的求交函数
+        if (!std::isinf(d)) // 求交函数返回 INFINITY，则求交失败
+        {
             if (dot(vNorm, vIn) < 0) vNorm = -vNorm; //保证法向量与入射方向夹角不超过 90 度
-			vPoint = ray.o + d*ray.d;                //求解交点位置
-			if (surface.type == SURFACE_TYPE_DIFFUSE) //交点表面是漫反射的情况
-			{
+            vPoint = ray.o + d*ray.d;                //求解交点位置
+            if (surface.type == SURFACE_TYPE_DIFFUSE) //交点表面是漫反射的情况
+            {
                 res = vAmbient;                       //计算环境光亮度
                 for (int i = 0; i < nSource; i++)     //枚举所有光源
                 {
                     res = res + SingleSourceContribution(vPoint, vNorm, pModel, pSource[i]);
                     // 调用你需要完成的函数，计算当前光源对表面交点的亮度贡献
                 }
-			}
+            }
             else if(surface.type == SURFACE_TYPE_SPECULAR) //交点表面是镜面反射的情况
             {
                 Ray reflect_ray;                                    //生成出射光
@@ -61,8 +61,8 @@ namespace Light
             }
             
             res = res * surface.color;                              //计算反光率
-		}
-		return res;                   // 返回采样结果
+        }
+        return res;                   // 返回采样结果
     }
 
     Vector3 SceneRayTrace::SampleRay(const Ray & ray, Random::RAND_ENGINE *eng)

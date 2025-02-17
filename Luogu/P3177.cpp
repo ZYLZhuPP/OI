@@ -18,7 +18,7 @@ struct IO {
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
     }
-    inline bool operator ~ () { return ~c; }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n, K, siz[N];
@@ -26,24 +26,24 @@ ll f[N][N];
 vector<pair<int, int > > es[N];
 
 void dfs(int u, int pre) {
-	siz[u] = 1; f[u][0] = 0; if (K) f[u][1] = 0;
-	for (auto &[v, w] : es[u]) if (v ^ pre) {
-		dfs(v, u);
-		For (i, 0, min(K, siz[v])) if (~f[v][i]) f[v][i] += 1ll * w * (i * (K - i) + (siz[v] - i) * (n - siz[v] - K + i));
-		rFor (i, min(K, siz[u]), 0) if (~f[u][i])
-			rFor (j, min(K - i, siz[v]), 0) if (~f[v][j]) 
-				cmax(f[u][i + j], f[u][i] + f[v][j]);
-		siz[u] += siz[v];
-	}
+    siz[u] = 1; f[u][0] = 0; if (K) f[u][1] = 0;
+    for (auto &[v, w] : es[u]) if (v ^ pre) {
+        dfs(v, u);
+        For (i, 0, min(K, siz[v])) if (~f[v][i]) f[v][i] += 1ll * w * (i * (K - i) + (siz[v] - i) * (n - siz[v] - K + i));
+        rFor (i, min(K, siz[u]), 0) if (~f[u][i])
+            rFor (j, min(K - i, siz[v]), 0) if (~f[v][j]) 
+                cmax(f[u][i + j], f[u][i] + f[v][j]);
+        siz[u] += siz[v];
+    }
 }
 
 int main() {
-	io >> n >> K;
-	int u, v, w;
-	For (i, 1, n - 1) io >> u >> v >> w, es[u].pb({v, w}), es[v].pb({u, w});
-	memset(f, -1, sizeof f);
-	dfs(1, 0);
-	printf("%lld", f[1][K]);
-	
-	return 0;
+    io >> n >> K;
+    int u, v, w;
+    For (i, 1, n - 1) io >> u >> v >> w, es[u].pb({v, w}), es[v].pb({u, w});
+    memset(f, -1, sizeof f);
+    dfs(1, 0);
+    printf("%lld", f[1][K]);
+    
+    return 0;
 } 

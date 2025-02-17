@@ -12,15 +12,15 @@ ll a[N],tr[4*N],n,q,x,y,z,res;
 template<typename T>
 inline void read(T *x)
 {
-	(*x)=0;
-	int f=1;
-	char ch=gc();
-	for(;!isdigit(ch);ch=gc())
-		if(!(ch^'-'))
-			f=-1;
-	for(;isdigit(ch);ch=gc())
-		(*x)=((*x)<<3)+((*x)<<1)+(ch^48);
-	(*x)*=f;
+    (*x)=0;
+    int f=1;
+    char ch=gc();
+    for(;!isdigit(ch);ch=gc())
+        if(!(ch^'-'))
+            f=-1;
+    for(;isdigit(ch);ch=gc())
+        (*x)=((*x)<<3)+((*x)<<1)+(ch^48);
+    (*x)*=f;
 }
 
 void pushup(int now)
@@ -49,27 +49,27 @@ void update(int now,int l,int r,int goal,ll ad)
 
 void find(int now,int l,int r,int x,int y)
 {
-	if(l>y||r<x)return;
-	if(x<=l&&r<=y){res+=tr[now];return;}
-	int mid=l+r>>1;
-	find(now<<1,l,mid,x,y);
-	find(now<<1|1,mid+1,r,x,y);
+    if(l>y||r<x)return;
+    if(x<=l&&r<=y){res+=tr[now];return;}
+    int mid=l+r>>1;
+    find(now<<1,l,mid,x,y);
+    find(now<<1|1,mid+1,r,x,y);
 }
 
 int main()
 {
     read(&n);read(&q);
     for(int i=1;i<=n;i++)
-    	read(&a[i]);
+        read(&a[i]);
     build(1,1,n);
     while(q--){
-    	read(&x);read(&y);read(&z);
-    	if(x==1)
-    		update(1,1,n,y,z);
-    	else{
-    		res=0;
-    		find(1,1,n,y,z);
-    		printf("%lld\n",res);
-		}
-	}
+        read(&x);read(&y);read(&z);
+        if(x==1)
+            update(1,1,n,y,z);
+        else{
+            res=0;
+            find(1,1,n,y,z);
+            printf("%lld\n",res);
+        }
+    }
 }

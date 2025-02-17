@@ -2,5 +2,5 @@
 #include "LightGeometry.h"
 #include "LightFilm.h"
 #include "LightRandom.h"
-#include "LightCamaraLib.h"
+#include "LightCameraLib.h"
 #include "LightScene.h"

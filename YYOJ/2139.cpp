@@ -7,14 +7,14 @@ using namespace std;
 const int N = 1e5 + 5, inf = 1e9;
 
 struct IO {
-	char c; int f;
+    char c; int f;
 #define gc() getchar()
-	IO& operator >> (int &x) {
+    IO& operator >> (int &x) {
         x = 0; f = 1;
         while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
-	}
+    }
 } io;
 
 struct P { int l, r, kd, pos; };

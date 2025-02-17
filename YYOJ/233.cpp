@@ -10,32 +10,32 @@ ll bit[N],pd[N];
 
 ll lowbit(ll x)
 {
-	return x&-x;
+    return x&-x;
 }
 
 void update(int k,ll ad)
 {
-	for(;k<=N;k+=lowbit(k))
-		bit[k]+=ad;
+    for(;k<=N;k+=lowbit(k))
+        bit[k]+=ad;
 }
 
 ll getsum(int k)
 {
-	ll sum=0;
-	for(;k>0;k-=lowbit(k))
-		sum+=bit[k];
-	return sum;
+    ll sum=0;
+    for(;k>0;k-=lowbit(k))
+        sum+=bit[k];
+    return sum;
 } 
 
 int main()
 {
-	scanf("%d",&n);
-	for(int i=1;i<=n;i++){
-		scanf("%d%d",&x,&y);
-		pd[getsum(x+1)]++;
-		update(x+1,1);
-	}
-	for(int i=0;i<n;i++)
-		printf("%lld\n",pd[i]);
-	return 0;
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++){
+        scanf("%d%d",&x,&y);
+        pd[getsum(x+1)]++;
+        update(x+1,1);
+    }
+    for(int i=0;i<n;i++)
+        printf("%lld\n",pd[i]);
+    return 0;
 } 

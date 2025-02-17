@@ -11,16 +11,16 @@ inline int ml(const int &x, const int &y) { return 1ll * x * y % Mo; }
 template<class C> inline bool cmax(C &x, const C &y) { return y>x? x=y, 1: 0; }
 
 struct IO {
-	char c; int f;
-#define gc() (getchar())
-	template<class C>
-	inline IO& operator >> (C &x) {
+    char c; int f;
+#define gc() getchar()
+    template<class C>
+    inline IO& operator >> (C &x) {
         x = 0; f = 1;
         while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
-	}
-	inline bool operator ~ () const { return ~c; }
+    }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n, _v[N], a[N], b[N], c[N], A, B, m, sg[N], vis[N];

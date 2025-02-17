@@ -29,57 +29,57 @@ int main() {
     } else if (m == 1) {
         ans = 8 * n - 24;
         printf("%lld\n", ans);
-		cout<<1<<' '<<1<<' '<<8<<endl;
-		cout<<1<<' '<<n<<' '<<4<<endl;
-		cout<<n<<' '<<1<<' '<<2<<endl;
-		cout<<n<<' '<<n<<' '<<1<<endl;
-		if(n&1^1) {
-			cout<<1<<' '<<2<<' '<<4<<endl;
-			cout<<2<<' '<<1<<' '<<2<<endl;
-			cout<<1<<' '<<n-1<<' '<<8<<endl;
-			cout<<2<<' '<<n<<' '<<1<<endl;
-			For (i, 1, n / 2 - 2) {
-				printf("%d %d %d\n",i+1,n-1-i,8);
-				printf("%d %d %d\n",i+2,n-i,1);
-				printf("%d %d %d\n",n-i,i,8);
-				printf("%d %d %d\n",n-i+1,i+1,1);
-				printf("%d %d %d\n",i+2,i,2);
-				printf("%d %d %d\n",i+1,i+1,4);
-				printf("%d %d %d\n",n-i+1,n-i-1,2);
-				printf("%d %d %d\n",n-i,n-i,4);
-				
-				printf("%d %d %d\n",i+1,n-1-i+1,8);
-				printf("%d %d %d\n",i+2,n-i+1,1);
-				printf("%d %d %d\n",n-i,i+1,8);
-				printf("%d %d %d\n",n-i+1,i+1+1,1);
-				printf("%d %d %d\n",i+2,i+1,2);
-				printf("%d %d %d\n",i+1,i+1+1,4);
-				printf("%d %d %d\n",n-i+1,n-i-1+1,2);
-				printf("%d %d %d\n",n-i,n-i+1,4);
-			}
-		} else {
-			For (i, 1, n / 2 - 1) {
-				printf("%d %d %d\n",i,i+1,4);
-				printf("%d %d %d\n",i+1,i,2);
-				printf("%d %d %d\n",i,n-i,8);
-				printf("%d %d %d\n",i+1,n-i+1,1);
-				printf("%d %d %d\n",n-i,i,8);
-				printf("%d %d %d\n",n-i+1,i+1,1);
-				printf("%d %d %d\n",n-i,n-i+1,4);
-				printf("%d %d %d\n",n-i+1,n-i,2);
-				
-				printf("%d %d %d\n",i+1,i+1,4);
-				printf("%d %d %d\n",i+1+1,i,2);
-				printf("%d %d %d\n",i+1,n-i,8);
-				printf("%d %d %d\n",i+1+1,n-i+1,1);
-				if(i ^ 1) {
-					printf("%d %d %d\n",n-i+1,i,8);
-					printf("%d %d %d\n",n-i+1+1,i+1,1);
-					printf("%d %d %d\n",n-i+1,n-i+1,4);
-					printf("%d %d %d\n",n-i+1+1,n-i,2);
-				}
-			}
-		}
+        cout<<1<<' '<<1<<' '<<8<<endl;
+        cout<<1<<' '<<n<<' '<<4<<endl;
+        cout<<n<<' '<<1<<' '<<2<<endl;
+        cout<<n<<' '<<n<<' '<<1<<endl;
+        if(n&1^1) {
+            cout<<1<<' '<<2<<' '<<4<<endl;
+            cout<<2<<' '<<1<<' '<<2<<endl;
+            cout<<1<<' '<<n-1<<' '<<8<<endl;
+            cout<<2<<' '<<n<<' '<<1<<endl;
+            For (i, 1, n / 2 - 2) {
+                printf("%d %d %d\n",i+1,n-1-i,8);
+                printf("%d %d %d\n",i+2,n-i,1);
+                printf("%d %d %d\n",n-i,i,8);
+                printf("%d %d %d\n",n-i+1,i+1,1);
+                printf("%d %d %d\n",i+2,i,2);
+                printf("%d %d %d\n",i+1,i+1,4);
+                printf("%d %d %d\n",n-i+1,n-i-1,2);
+                printf("%d %d %d\n",n-i,n-i,4);
+                
+                printf("%d %d %d\n",i+1,n-1-i+1,8);
+                printf("%d %d %d\n",i+2,n-i+1,1);
+                printf("%d %d %d\n",n-i,i+1,8);
+                printf("%d %d %d\n",n-i+1,i+1+1,1);
+                printf("%d %d %d\n",i+2,i+1,2);
+                printf("%d %d %d\n",i+1,i+1+1,4);
+                printf("%d %d %d\n",n-i+1,n-i-1+1,2);
+                printf("%d %d %d\n",n-i,n-i+1,4);
+            }
+        } else {
+            For (i, 1, n / 2 - 1) {
+                printf("%d %d %d\n",i,i+1,4);
+                printf("%d %d %d\n",i+1,i,2);
+                printf("%d %d %d\n",i,n-i,8);
+                printf("%d %d %d\n",i+1,n-i+1,1);
+                printf("%d %d %d\n",n-i,i,8);
+                printf("%d %d %d\n",n-i+1,i+1,1);
+                printf("%d %d %d\n",n-i,n-i+1,4);
+                printf("%d %d %d\n",n-i+1,n-i,2);
+                
+                printf("%d %d %d\n",i+1,i+1,4);
+                printf("%d %d %d\n",i+1+1,i,2);
+                printf("%d %d %d\n",i+1,n-i,8);
+                printf("%d %d %d\n",i+1+1,n-i+1,1);
+                if(i ^ 1) {
+                    printf("%d %d %d\n",n-i+1,i,8);
+                    printf("%d %d %d\n",n-i+1+1,i+1,1);
+                    printf("%d %d %d\n",n-i+1,n-i+1,4);
+                    printf("%d %d %d\n",n-i+1+1,n-i,2);
+                }
+            }
+        }
     } else if (m == 2) {
         ans = 4 * n - 4;
         printf("%lld\n", ans);

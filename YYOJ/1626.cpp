@@ -7,16 +7,16 @@ const int N = 1e5 + 5, M = 345;
 const ll Mo = 998244353;
 
 struct IO {
-	char c; int f;
-#define gc() (getchar())
-	template<class C>
-	inline IO& operator >> (C &x) {
+    char c; int f;
+#define gc() getchar()
+    template<class C>
+    inline IO& operator >> (C &x) {
         x = 0; f = 1;
         while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
-	}
-	inline bool operator ~ () {return ~c;}
+    }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n, a[N], bl[M], br[M], cnt[M][N], m, S, s[N], Q;
@@ -59,17 +59,17 @@ ll get(int l, int r) {
 
 ll solve(int l, int r) {
     ll res = f[l / S + 1][r / S - 1];
-    int L = l / S, R = r / S, rr = br[L], ll = bl[R];
-    For (i, l, rr) {
+    int L = l / S, R = r / S, r1 = br[L], l1 = bl[R];
+    For (i, l, r1) {
         ll x = ++s[a[i]] + cnt[R - 1][a[i]] - cnt[L][a[i]];
         res = res * inv[x] % Mo * (x + 1) % Mo;
     }
-    For (i, ll, r) {
+    For (i, l1, r) {
         ll x = ++s[a[i]] + cnt[R - 1][a[i]] - cnt[L][a[i]];
         res = res * inv[x] % Mo * (x + 1) % Mo;
     }
-    For (i, l, rr) s[a[i]] = 0;
-    For (i, ll, r) s[a[i]] = 0;
+    For (i, l, r1) s[a[i]] = 0;
+    For (i, l1, r) s[a[i]] = 0;
     return res;
 }
 

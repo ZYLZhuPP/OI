@@ -15,9 +15,9 @@ struct IO {
         x *= f; return *this;
     }
     inline IO& operator >> (char *x) {
-    	while ((c = gc()) < 33 && ~c);
-    	while (c > 32) *x++ = c, c = gc();
-    	*x = 0; return *this;
+        while ((c = gc()) < 33 && ~c);
+        while (c > 32) *x++ = c, c = gc();
+        *x = 0; return *this;
     }
     inline bool operator ~ () const { return ~c; }
 } io;

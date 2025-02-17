@@ -10,16 +10,16 @@ inline void add(int &x, int y) { x = mo(x + y); }
 inline int mul(int x, int y) { return 1ll * x * y % Mo; }
 
 struct IO {
-	char c; int f;
-#define gc() (getchar())
-	template<class C>
-	inline IO& operator >> (C &x) {
+    char c; int f;
+#define gc() getchar()
+    template<class C>
+    inline IO& operator >> (C &x) {
         x = 0; f = 1;
         while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
-	}
-	inline bool operator ~ () {return ~c;}
+    }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n, m, t, invm, g[N][T], h[N][T], invh[N][T], f[N][T], p[N][T], ans[N];

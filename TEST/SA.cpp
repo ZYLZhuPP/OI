@@ -6,14 +6,14 @@ using namespace std;
 const int N = 1e6 + 5;
 
 struct IO {
-	char c; int f;
+    char c; int f;
 #define gc() getchar()
-	inline IO& operator >> (char *x) {
-    	while ((c = gc()) < 33 && ~c);
-    	while (c > 32) *x++ = c, c = gc();
-		*x = 0; return *this;
-	}
-	int st[66], t;
+    inline IO& operator >> (char *x) {
+        while ((c = gc()) < 33 && ~c);
+        while (c > 32) *x++ = c, c = gc();
+        *x = 0; return *this;
+    }
+    int st[66], t;
 #define pc(c) putchar(c)
     template<class C>
     inline IO& operator << (C x) {
@@ -25,7 +25,7 @@ struct IO {
     inline IO& operator << (char x) {
         pc(x); return *this;
     }
-	inline bool operator ~ () { return ~c; }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 char s[N];

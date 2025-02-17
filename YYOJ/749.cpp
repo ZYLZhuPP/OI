@@ -7,16 +7,16 @@ const int N=1e3+5;
 const ll Mo=2147483647;
 
 struct IO {
-	static const int BufS=1<<21;
-	char buf[BufS], *S, *T, c, f;
-	#define gc() (getchar())
-	template<class C>
-	inline IO& operator >> (C &x){
-		for(f=1; !isdigit(c); c=gc()) if(!(c^'-')) f=-1;
-		for(x=0; isdigit(c); c=gc()) x=x*10+(c^48); x*=f;
-		return *this;
-	}
-	inline bool operator ~ (){while(c<33 && c^EOF) c=gc(); return c^EOF;}
+    static const int BufS=1<<21;
+    char buf[BufS], *S, *T, c, f;
+#define gc() getchar()
+    template<class C>
+    inline IO& operator >> (C &x){
+        for(f=1; !isdigit(c); c=gc()) if(!(c^'-')) f=-1;
+        for(x=0; isdigit(c); c=gc()) x=x*10+(c^48); x*=f;
+        return *this;
+    }
+    inline bool operator ~ (){while(c<33 && c^EOF) c=gc(); return c^EOF;}
 }io;
 
 struct Edge{

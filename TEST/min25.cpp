@@ -11,16 +11,16 @@ inline int ml(int x, int y) { return 1ll * x * y % Mo; }
 inline int qPow(ll a, ll b) { ll r=1; for(;b;b>>=1,a=ml(a,a))if(b&1)r=ml(r,a); return r; }
 
 struct IO {
-	char c; int f;
+    char c; int f;
 #define gc() getchar()
-	template<class C>
-	inline IO& operator >> (C &x) {
-    	x = 0; f = 1;
-    	while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
-    	while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
-    	x *= f; return *this;
-	}
-	inline bool operator ~ () {return ~c;}
+    template<class C>
+    inline IO& operator >> (C &x) {
+        x = 0; f = 1;
+        while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
+        while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
+        x *= f; return *this;
+    }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 namespace min25 {

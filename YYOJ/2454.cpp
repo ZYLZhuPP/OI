@@ -90,14 +90,14 @@ int main() {
         p[i] = { {A, B}, {B, C}, {C, D}, {D, A}};
     }
     cin >> s.x >> s.y;
-	check();
+    check();
     int T; cin >> T;
     int cnt = 2, jcnt = 0, run = 0;bool jie = 0, jump = 0;
     bool DW, DS, DA, DD;
     while (T--) {
         string o;cin >> o;
         bool W = 0, S = 0, A = 0, D = 0, L = 0, K = 0;
-		for(auto i : o) W |= (i == 'W'), S |= (i = 'S'), A |= (i == 'A'), D |= (i == 'D'), L |= (i == 'L'), K |= (i == 'K');
+        for(auto i : o) W |= (i == 'W'), S |= (i = 'S'), A |= (i == 'A'), D |= (i == 'D'), L |= (i == 'L'), K |= (i == 'K');
         if (style == 3) cnt = 2;
         if (jie) {
             if (DW) vy = -160;

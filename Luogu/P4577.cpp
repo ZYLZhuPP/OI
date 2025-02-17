@@ -6,17 +6,17 @@ using namespace std;
 const int N = 2e5 + 5;
 
 struct IO {
-	static const int BufS = 1 << 20;
-	char ibuf[BufS], *S, *T, c; int f;
+    static const int BufS = 1 << 20;
+    char ibuf[BufS], *S, *T, c; int f;
 #define gc() ((S==T && (T=(S=ibuf)+fread(ibuf, 1, BufS, stdin)), S==T)? EOF: *S++)
-	template<class C>
-	inline IO& operator >> (C &x) {
+    template<class C>
+    inline IO& operator >> (C &x) {
         x = 0; f = 1;
         while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
-	}
-	inline bool operator ~ () const { return ~c; }
+    }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n, fa[N], w[N], d[N], dep[N], f[N], vis[N];

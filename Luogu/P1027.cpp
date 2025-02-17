@@ -5,16 +5,16 @@ const double eps = 1e-10;
 const int N = 405;
 
 struct IO {
-	char c; int f;
-#define gc() (getchar())
-	template<class C>
-	inline IO& operator >> (C &x) {
-		x = 0; f = 1;
-		while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
-		while (isdigit(c)) x = (x * 10) + (c ^ 48), c = gc();
-		x *= f; return *this;
-	}
-	inline bool operator ~ () {return ~c;}
+    char c; int f;
+#define gc() getchar()
+    template<class C>
+    inline IO& operator >> (C &x) {
+        x = 0; f = 1;
+        while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
+        while (isdigit(c)) x = (x * 10) + (c ^ 48), c = gc();
+        x *= f; return *this;
+    }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int T, n, A, B, Q;

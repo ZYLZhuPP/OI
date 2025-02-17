@@ -35,7 +35,7 @@ namespace SEG
     void pushUp(int x) { tr[x] = tr[x << 1] + tr[x << 1 | 1]; }
     void pushDown(int x, int l, int r)
     {
-        //		assert(x);
+        //assert(x);
         int mid = (l + r) >> 1;
         tr[x << 1] += lazy[x] * (mid - l + 1);
         tr[x << 1 | 1] += lazy[x] * (r - mid);
@@ -45,7 +45,7 @@ namespace SEG
     }
     void update(int x, int l, int r, int L, int R, int val)
     {
-        //		assert(L<=R&&L>=1&&L<=n&&R>=1&&R<=n);
+        //assert(L<=R&&L>=1&&L<=n&&R>=1&&R<=n);
         if (L <= l && R >= r)
         {
             tr[x] += yao * val * (r - l + 1);
@@ -62,7 +62,7 @@ namespace SEG
     }
     long long query(int x, int l, int r, int L, int R)
     {
-        //		assert(L<=R&&L>=1&&L<=n&&R>=1&&R<=n);
+        //assert(L<=R&&L>=1&&L<=n&&R>=1&&R<=n);
         if (L <= l && R >= r)
             return tr[x];
         int mid = (l + r) >> 1;

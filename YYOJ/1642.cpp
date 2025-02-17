@@ -6,20 +6,20 @@ using namespace std;
 const int N = 1e5 + 5, lgN = 20, H = 13;
 
 struct IO {
-	char c; int f;
-#define gc() (getchar())
-	template<class C>
-	inline IO& operator >> (C &x) {
+    char c; int f;
+#define gc() getchar()
+    template<class C>
+    inline IO& operator >> (C &x) {
         x = 0; f = 1;
         while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
-	}
-	inline IO& operator >> (char &x){
-		while ((c = gc()) < 33 && ~c);
-		x = c; return *this;
-	}
-	inline bool operator ~ () {return ~c;}
+    }
+    inline IO& operator >> (char &x){
+        while ((c = gc()) < 33 && ~c);
+        x = c; return *this;
+    }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int h, n, p, q, ans, d, l, r, to[H][N], a[H][N], b[H][N][lgN];

@@ -17,13 +17,13 @@ char f;
 
 template<class T>
 inline bool read(T &x){
-	x=0;
+    x=0;
     bool f(0);
-	char ch(gc());
-	for(; !isdigit(ch); f|=!(ch^45), ch=gc()) if(!(ch^EOF)) return 0;
-	for(; isdigit(ch); ch=gc()) x=(x<<3)+(x<<1)+(ch^48);
-	if(f) x=-x;
-	return 1; 
+    char ch(gc());
+    for(; !isdigit(ch); f|=!(ch^45), ch=gc()) if(!(ch^EOF)) return 0;
+    for(; isdigit(ch); ch=gc()) x=(x<<3)+(x<<1)+(ch^48);
+    if(f) x=-x;
+    return 1; 
 }
 
 void init(){

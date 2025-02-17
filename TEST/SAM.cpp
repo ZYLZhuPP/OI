@@ -13,7 +13,7 @@ struct IO {
         while (c > 32) *x++ = c, c = gc();
         *x = 0; return *this;
     }
-    inline bool operator ~ () { return ~c; }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 char a[N], b[N];

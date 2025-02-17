@@ -19,20 +19,20 @@ bool g[M][N];
 #define Rt 1, 1, n
 
 struct IO {
-	char c, f;
-	#define gc() (getchar())
-	template<class C>
-	inline IO& operator >> (C &x) {
-		x = 0; f = 1;
-		while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
-		while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc(); x *= f; return *this;
-	}
-	inline IO& operator >> (bool &x) {
-		while (!isdigit(c = gc()) && ~c);
-		x = c ^ 48;
-		return *this;
-	}
-	inline bool operator ~ () {return ~c;}
+    char c, f;
+#define gc() getchar()
+    template<class C>
+    inline IO& operator >> (C &x) {
+        x = 0; f = 1;
+        while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
+        while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc(); x *= f; return *this;
+    }
+    inline IO& operator >> (bool &x) {
+        while (!isdigit(c = gc()) && ~c);
+        x = c ^ 48;
+        return *this;
+    }
+    inline bool operator ~ () const { return ~c; }
 }io;
 
 template<class VAL>
@@ -41,44 +41,44 @@ private:
     struct Node {
         VAL v;
 
-	    Node(VAL v = VAL()): v(v) {}
-	    
-	    Node operator + (const Node &x) {
-	    	return Node(v + x.v);
-	    }
+        Node(VAL v = VAL()): v(v) {}
+        
+        Node operator + (const Node &x) {
+            return Node(v + x.v);
+        }
     };
-	vector<Node > tr;
-	
-	void pushup(P) { tr[p] = tr[lc] + tr[rc]; }
+    vector<Node > tr;
+    
+    void pushup(P) { tr[p] = tr[lc] + tr[rc]; }
 
-	void build(P, VAL a[]) {
-		if (l == r) return (void)(tr[p] = Node(a[l]));
-		Mid; build(Lc, a); build(Rc, a);
-		pushup(me);
-	}
+    void build(P, VAL a[]) {
+        if (l == r) return (void)(tr[p] = Node(a[l]));
+        Mid; build(Lc, a); build(Rc, a);
+        pushup(me);
+    }
 
 public:
-	int n;
-	
-	SMT(int n, VAL a[]): n(n) {
-		tr.reserve((n << 2) + 1);
+    int n;
+    
+    SMT(int n, VAL a[]): n(n) {
+        tr.reserve((n << 2) + 1);
         build(Rt, a);
-	}
+    }
 
     ~SMT() {vector<Node > ().swap(tr);}
-	
-	void pt_modify(P, int goal, VAL ne) {
-	    if (goal < l || r < goal) return;
-	    if (l == r) {tr[p].v = ne; return;}
-	    Mid; pt_modify(Lc, goal, ne); pt_modify(Rc, goal, ne);
-	    pushup(me);
-	}
-	
-	VAL range_query(P, int L, int R) {
-		if (r < L || R < l) return VAL();
-    	if (L <= l && r <= R) return tr[p].v;
-    	Mid; return range_query(Lc, L, R) + range_query(Rc, L, R);
-	}
+    
+    void pt_modify(P, int goal, VAL ne) {
+        if (goal < l || r < goal) return;
+        if (l == r) {tr[p].v = ne; return;}
+        Mid; pt_modify(Lc, goal, ne); pt_modify(Rc, goal, ne);
+        pushup(me);
+    }
+    
+    VAL range_query(P, int L, int R) {
+        if (r < L || R < l) return VAL();
+        if (L <= l && r <= R) return tr[p].v;
+        Mid; return range_query(Lc, L, R) + range_query(Rc, L, R);
+    }
 };
 
 struct A55 {
@@ -132,5 +132,5 @@ int main() {
         }
     }
 
-	return 0;
+    return 0;
 }

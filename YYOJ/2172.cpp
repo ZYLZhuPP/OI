@@ -25,42 +25,42 @@ vector<vector<int > > a;
 vector<P > es[N];
 
 inline void dfs0(int u) {
-	dis[u] = 0; a[0].pb(u);
-	for (auto &e : es[u]) if (!~dis[e[0]] && !e[1]) dfs0(e[0]);
+    dis[u] = 0; a[0].pb(u);
+    for (auto &e : es[u]) if (!~dis[e[0]] && !e[1]) dfs0(e[0]);
 }
 
 int main() {
-	memset(dis, -1, sizeof dis);
-	io >> n >> m;
-	int u, v, w;
-	For (i, 1, m) io >> u >> v >> w, es[u].pb({v, w});
-	a.pb(vector<int >()); dfs0(1);
-	while (!a.empty()) {
-		vector<int > nq;
-		for (auto &q : a) {
-			for (auto &u : q) {
-				for (auto &e : es[u]) if (!~dis[e[0]] && !e[1]) {
-					int v = e[0], w = e[1];
-					dis[v] = mo(dis[u] << 1 | w); id[v] = id[u] << 1 | w;
-					nq.pb(v);
-				}
-			}
-			for (auto &u : q) {
-				for (auto &e : es[u]) if (!~dis[e[0]] && e[1]) {
-					int v = e[0], w = e[1];
-					dis[v] = mo(dis[u] << 1 | w); id[v] = id[u] << 1 | w;
-					nq.pb(v);
-				}
-			}
-		}
-		a.resize(0);
-		For (i, 0, (int)nq.size() - 1) {
-			if (!i || id[nq[i]] ^ id[nq[i - 1]]) a.pb(vector<int >(1, nq[i]));
-			else (*a.rbegin()).pb(nq[i]);
-		}
-	}
-	For (i, 2, n - 1) printf("%d ", dis[i]);
-	printf("%d", dis[n]);
-	
-	return 0; 
+    memset(dis, -1, sizeof dis);
+    io >> n >> m;
+    int u, v, w;
+    For (i, 1, m) io >> u >> v >> w, es[u].pb({v, w});
+    a.pb(vector<int >()); dfs0(1);
+    while (!a.empty()) {
+        vector<int > nq;
+        for (auto &q : a) {
+            for (auto &u : q) {
+                for (auto &e : es[u]) if (!~dis[e[0]] && !e[1]) {
+                    int v = e[0], w = e[1];
+                    dis[v] = mo(dis[u] << 1 | w); id[v] = id[u] << 1 | w;
+                    nq.pb(v);
+                }
+            }
+            for (auto &u : q) {
+                for (auto &e : es[u]) if (!~dis[e[0]] && e[1]) {
+                    int v = e[0], w = e[1];
+                    dis[v] = mo(dis[u] << 1 | w); id[v] = id[u] << 1 | w;
+                    nq.pb(v);
+                }
+            }
+        }
+        a.resize(0);
+        For (i, 0, (int)nq.size() - 1) {
+            if (!i || id[nq[i]] ^ id[nq[i - 1]]) a.pb(vector<int >(1, nq[i]));
+            else (*a.rbegin()).pb(nq[i]);
+        }
+    }
+    For (i, 2, n - 1) printf("%d ", dis[i]);
+    printf("%d", dis[n]);
+    
+    return 0; 
 } 

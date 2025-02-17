@@ -6,15 +6,15 @@ using namespace std;
 const int N = 1e6 + 5;
 
 struct IO {
-	static const int BufS = 1 << 20;
-	char ibuf[BufS], *S, *T, c; int f;
+    static const int BufS = 1 << 20;
+    char ibuf[BufS], *S, *T, c; int f;
 #define gc() ((S==T && (T=(S=ibuf)+fread(ibuf, 1, BufS, stdin)), S==T)? EOF: *S++)
-	inline IO& operator >> (char *x){
-		while ((c = gc()) < 33 && ~c);
-		while (c > 32) *x++ = c, c = gc();
-		*x = 0; return *this;
-	}
-	char obuf[BufS]; int E, st[66], t;
+    inline IO& operator >> (char *x){
+        while ((c = gc()) < 33 && ~c);
+        while (c > 32) *x++ = c, c = gc();
+        *x = 0; return *this;
+    }
+    char obuf[BufS]; int E, st[66], t;
 #define pc(c) (obuf[E==BufS && (E-=fwrite(obuf, 1, BufS, stdout)), E++]=c)
     inline void flush() {fwrite(obuf, 1, E, stdout);}
     ~IO() {flush();}
@@ -27,7 +27,7 @@ struct IO {
     inline IO& operator << (char x) {
         pc(x); return *this;
     }
-	inline bool operator ~ () { return ~c; }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int sa[N];

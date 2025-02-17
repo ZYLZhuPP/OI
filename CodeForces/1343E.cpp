@@ -17,7 +17,7 @@ struct IO {
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
     }
-    inline bool operator ~ () { return ~c; }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int T, n, m, A, B, C, dis[3][N], w[N];

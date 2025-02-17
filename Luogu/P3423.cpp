@@ -15,37 +15,37 @@ struct IO {
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
     }
-    inline bool operator ~ () { return ~c; }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n, a[205], b[205], K, f[20005], who[20005], m, A[3005], B[3005], cnt[205], id[3005];
 bool pre[20005][3005];
 
 void solve(int i) {
-	int x = b[i], k = 1;
-	while (x >= k) m++, A[m] = a[i] * k, B[m] = k, id[m] = i, x -= k, k <<= 1;
-	if (x) A[m] = a[i] * x, B[m] = x, id[m] = i;
+    int x = b[i], k = 1;
+    while (x >= k) m++, A[m] = a[i] * k, B[m] = k, id[m] = i, x -= k, k <<= 1;
+    if (x) A[m] = a[i] * x, B[m] = x, id[m] = i;
 }
 
 inline void find(int x, int y) {
-	if (!x) return;
-	while (!pre[x][y]) y--;
-	cnt[id[y]] += B[y];
-	find(x - A[y], y - 1);
+    if (!x) return;
+    while (!pre[x][y]) y--;
+    cnt[id[y]] += B[y];
+    find(x - A[y], y - 1);
 }
 
 int main() {
-	io >> n;
-	For (i, 1, n) io >> a[i];
-	For (i, 1, n) io >> b[i];
-	io >> K;
-	For (i, 1, n) solve(i);
-	memset(f, 31, sizeof f);
-	f[0] = 0;
-	For (j, 1, m) rFor (i, K, A[j]) if (cmin(f[i], f[i - A[j]] + B[j])) pre[i][j] = 1;
-	printf("%d\n", f[K]);
-	find(K, m);
-	For (i, 1, n) printf("%d ", cnt[i]);
-	
-	return 0;
+    io >> n;
+    For (i, 1, n) io >> a[i];
+    For (i, 1, n) io >> b[i];
+    io >> K;
+    For (i, 1, n) solve(i);
+    memset(f, 31, sizeof f);
+    f[0] = 0;
+    For (j, 1, m) rFor (i, K, A[j]) if (cmin(f[i], f[i - A[j]] + B[j])) pre[i][j] = 1;
+    printf("%d\n", f[K]);
+    find(K, m);
+    For (i, 1, n) printf("%d ", cnt[i]);
+
+    return 0;
 } 

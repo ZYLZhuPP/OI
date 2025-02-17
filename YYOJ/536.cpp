@@ -4,16 +4,16 @@ using namespace std;
 typedef long long ll;
 
 struct IO {
-	static const int BufS=1<<21;
-	char buf[BufS], *S, *T, c, f;
-	#define gc() ((S==T && (T=(S=buf)+fread(buf, 1, BufS, stdin)), S==T)? EOF: *S++)
-	template<class C>
-	inline IO& operator >> (C &x){
-		for(f=1; !isdigit(c); c=gc()) if(!(c^45)) f=-1;
-		for(x=0; isdigit(c); c=gc()) x=(x<<3)+(x<<1)+(c^48); x*=f;
-		return *this;
-	}
-	inline bool operator ~ (){while(c<33 && c^EOF) c=gc(); return c^EOF;}
+    static const int BufS=1<<21;
+    char buf[BufS], *S, *T, c, f;
+#define gc() ((S==T && (T=(S=buf)+fread(buf, 1, BufS, stdin)), S==T)? EOF: *S++)
+    template<class C>
+    inline IO& operator >> (C &x){
+        for(f=1; !isdigit(c); c=gc()) if(!(c^45)) f=-1;
+        for(x=0; isdigit(c); c=gc()) x=(x<<3)+(x<<1)+(c^48); x*=f;
+        return *this;
+    }
+    inline bool operator ~ (){while(c<33 && c^EOF) c=gc(); return c^EOF;}
 }io;
 
 int q;
@@ -169,17 +169,17 @@ public:
 };
 
 int main(){
-	Treap<int, int > t;
-	io>>q;
-	while(q--){
-		int k,x;
-		io>>k>>x;
-		if(k==1) t.insert(x, x);
-		else if(k==2) t.erase_rank(t.rank(x));
-		else if(k==3) printf("%lld\n", t.rank(x));
-		else if(k==4) printf("%d\n", t+x);
-		else if(k==5) printf("%d\n", t.pre(x));
-		else printf("%d\n", t.suf(x));
-	}
+    Treap<int, int > t;
+    io>>q;
+    while(q--){
+        int k,x;
+        io>>k>>x;
+        if(k==1) t.insert(x, x);
+        else if(k==2) t.erase_rank(t.rank(x));
+        else if(k==3) printf("%lld\n", t.rank(x));
+        else if(k==4) printf("%d\n", t+x);
+        else if(k==5) printf("%d\n", t.pre(x));
+        else printf("%d\n", t.suf(x));
+    }
     return 0;
 }

@@ -2,16 +2,16 @@
 using namespace std;
 
 struct IO {
-	static const int BufS=1<<21;
-	char buf[BufS], *S, *T, c, f;
-	#define gc() ((S==T && (T=(S=buf)+fread(buf, 1, BufS, stdin)), S==T)? EOF: *S++)
-	template<class C>
-	inline IO& operator >> (C &x){
-		for(f=1; !isdigit(c); c=gc()) if(!(c^45)) f=-1;
-		for(x=0; isdigit(c); c=gc()) x=(x<<3)+(x<<1)+(c^48); x*=f;
-		return *this;
-	}
-	inline bool operator ~ (){while(c<33 && c^EOF) c=gc(); return c^EOF;}
+    static const int BufS=1<<21;
+    char buf[BufS], *S, *T, c, f;
+#define gc() ((S==T && (T=(S=buf)+fread(buf, 1, BufS, stdin)), S==T)? EOF: *S++)
+    template<class C>
+    inline IO& operator >> (C &x){
+        for(f=1; !isdigit(c); c=gc()) if(!(c^45)) f=-1;
+        for(x=0; isdigit(c); c=gc()) x=(x<<3)+(x<<1)+(c^48); x*=f;
+        return *this;
+    }
+    inline bool operator ~ (){while(c<33 && c^EOF) c=gc(); return c^EOF;}
 }io;
 
 int ans = -1, sum[10], a[10][10], b[10], vh[10][10], vl[10][10], vg[10][10];
@@ -21,7 +21,7 @@ int cmp(int a, int b) {
 }
 
 int w(int i, int j) {
-	return 10 - max(abs(i-4), abs(j-4));
+    return 10 - max(abs(i-4), abs(j-4));
 }
 
 int f(int i, int j) {
@@ -29,9 +29,9 @@ int f(int i, int j) {
 }
 
 void dfs(int k, int num) {
-	if (num + (81 - k)*81 < ans)
-		return;
-	
+    if (num + (81 - k)*81 < ans)
+        return;
+    
     if (k == 81) {
         ans = max(ans, num);
         return;

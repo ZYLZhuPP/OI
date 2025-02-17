@@ -25,13 +25,13 @@ struct IO {
 int n, fa[N], d[N], a[N], inv[N] = {1, 1}, _[N] = {1, inv2}, f[N], g[N], h[N];
 
 int main() {
-	io >> n;
+    io >> n;
     For (i, 2, n) _[i] = ml(_[i - 1], inv2), inv[i] = ml(Mo - Mo / i, inv[Mo % i]);
-	For (i, 2, n) io >> fa[i], ++d[fa[i]];
-	For (i, 1, n) io >> a[i], h[i] = ml(inv[i], Mo + 1 - _[i]);
-	rFor (i, n, 1) f[i] = mo(a[i] + ml(g[i], h[d[i]])), add(g[fa[i]], f[i]);
-	For (i, 2, n) add(g[i], mo(a[fa[i]] + ml(g[fa[i]] - f[i], h[d[fa[i]] - 1]))), f[i] = mo(a[i] + ml(g[i], h[++d[i]]));
-	For (i, 1, n) printf("%d\n", f[i]);
+    For (i, 2, n) io >> fa[i], ++d[fa[i]];
+    For (i, 1, n) io >> a[i], h[i] = ml(inv[i], Mo + 1 - _[i]);
+    rFor (i, n, 1) f[i] = mo(a[i] + ml(g[i], h[d[i]])), add(g[fa[i]], f[i]);
+    For (i, 2, n) add(g[i], mo(a[fa[i]] + ml(g[fa[i]] - f[i], h[d[fa[i]] - 1]))), f[i] = mo(a[i] + ml(g[i], h[++d[i]]));
+    For (i, 1, n) printf("%d\n", f[i]);
 
-	return 0;
+    return 0;
 }

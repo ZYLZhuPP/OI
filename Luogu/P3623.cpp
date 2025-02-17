@@ -6,8 +6,8 @@ using namespace std;
 
 struct a__
 {
-	int x;
-	int y;
+    int x;
+    int y;
 }snl[N],els[N];
 
 int n,m,k,must[N];
@@ -17,155 +17,143 @@ int snl_num;
 int els_num;
 int must_num;
 
-//�������鼯����
 int find(int x)
 {
-	int grandson=x;
-	while(fa[x]!=x)
-		x=fa[x];
-	
-	return fa[grandson]=x;
+    int grandson=x;
+    while(fa[x]!=x)
+        x=fa[x];
+
+    return fa[grandson]=x;
 }
 void unionset(int x,int y)
 {
-	fa[find(y)]=find(x);
+    fa[find(y)]=find(x);
 }
 
 vector<int > ans;
 void algo()
 {
-	//���Ȱ����е�ˮ��·�����ӽ���
-	for(int i=1;i<=snl_num;i++)
-	{
-		if(vill==1)break;
-		if(find(snl[i].x)==find(snl[i].y))
-			continue;
-		else
-		{
-			unionset(snl[i].x,snl[i].y);
-			vill--;
-		}
-	}
-	//������е�ˮ��³����ʹ����ͼ��ͨ
-	if(vill!=1)
-	{
-		//�ǾͿ�ʼ�����ż���һЩ����ʯ·
-		for(int i=1;i<=els_num;i++)
-		{
-			if(vill==1)break;
-			if(find(els[i].x)==find(els[i].y))
-				continue;
-			else
-			{
-				//��¼�������Ķ���ʯ·
-				must_num++;
-				must[must_num]=i;
-				
-				unionset(els[i].x,els[i].y);
-				vill--;
-			}
-		}
-		
-		//������еĶ���ʯ·��ˮ��·���ӽ�ȥ������ʹ����ͨ ,����Ҫ����ӽ�ȥ�Ķ���ʯ·����ʹ����ͨ������̫�󣬱���
-		if(vill!=1 || must_num>k)
-		{
-			printf("no solution\n");
-			return;
-		}
-	}
-	
-	//--------����
-	
-	vill=n;
-	
-	for(int i=1;i<=n;i++)
-		fa[i]=i;
-	
-	//����б������Ķ���ʯ·���ȼ�����Щ
-	if(must_num)
-	{
-		for(int i=1;i<=must_num;i++)
-		{
-			unionset(els[must[i]].x,els[must[i]].y);
-			vill--;
-			k--;
-			ans.pb(must[i]);
-			//printf("%d %d 0\n",must[i].x,must[i].y);
-		}
-	}
-	//���Ӽ�����Ҫ�Ķ���ʯ·
-	for(int i=1;i<=els_num && k>0;i++)
-		{
-			if(vill==1)break;
-			if(find(els[i].x)==find(els[i].y))
-				continue;
-			else
-			{
-				unionset(els[i].x,els[i].y);
-				vill--;
-				k--;
-				ans.pb(i);
-			    //printf("%d %d 0\n",els[i].x,els[i].y);
-			}
-		}
-	if(k!=0)
-	{
-		printf("no solution\n");
-		return;
-	}
-	//��ʣ�µ�ˮ��·�������
-	for(int i=1;i<=snl_num;i++)
-	{
-		if(vill==1)break;
-		if(find(snl[i].x)==find(snl[i].y))
-			continue;
-		else
-		{
-			unionset(snl[i].x,snl[i].y);
-			vill--;
-			printf("%d %d 1\n",snl[i].x,snl[i].y);
-		}
-	}
-	for (auto &e : ans) printf("%d %d 0\n",els[e].x,els[e].y);
+    for(int i=1;i<=snl_num;i++)
+    {
+        if(vill==1)break;
+        if(find(snl[i].x)==find(snl[i].y))
+            continue;
+        else
+        {
+            unionset(snl[i].x,snl[i].y);
+            vill--;
+        }
+    }
+    if(vill!=1)
+    {
+        for(int i=1;i<=els_num;i++)
+        {
+            if(vill==1)break;
+            if(find(els[i].x)==find(els[i].y))
+                continue;
+            else
+            {
+                must_num++;
+                must[must_num]=i;
+                
+                unionset(els[i].x,els[i].y);
+                vill--;
+            }
+        }
+
+        if(vill!=1 || must_num>k)
+        {
+            printf("no solution\n");
+            return;
+        }
+    }
+
+    vill=n;
+
+    for(int i=1;i<=n;i++)
+        fa[i]=i;
+
+    if(must_num)
+    {
+        for(int i=1;i<=must_num;i++)
+        {
+            unionset(els[must[i]].x,els[must[i]].y);
+            vill--;
+            k--;
+            ans.pb(must[i]);
+
+        }
+    }
+
+    for(int i=1;i<=els_num && k>0;i++)
+        {
+            if(vill==1)break;
+            if(find(els[i].x)==find(els[i].y))
+                continue;
+            else
+            {
+                unionset(els[i].x,els[i].y);
+                vill--;
+                k--;
+                ans.pb(i);
+                //printf("%d %d 0\n",els[i].x,els[i].y);
+            }
+        }
+    if(k!=0)
+    {
+        printf("no solution\n");
+        return;
+    }
+
+    for(int i=1;i<=snl_num;i++)
+    {
+        if(vill==1)break;
+        if(find(snl[i].x)==find(snl[i].y))
+            continue;
+        else
+        {
+            unionset(snl[i].x,snl[i].y);
+            vill--;
+            printf("%d %d 1\n",snl[i].x,snl[i].y);
+        }
+    }
+    for (auto &e : ans) printf("%d %d 0\n",els[e].x,els[e].y);
 }
 
 int main()
 {
-	
-	scanf("%d%d%d",&n,&m,&k);
-	vill=n;
-	
-	for(int i=1;i<=n;i++)
-		fa[i]=i; 
-	
-	int s,d,v;
-	for(int i=1;i<=m;i++)
-	{
-		scanf("%d%d%d",&s,&d,&v);
-		if(v==0)
-		{
-			//�����ʯ
-			els_num++;
-			els[els_num].x=s;
-			els[els_num].y=d;
-		}
-		else
-		{
-			//��ˮ��
-			snl_num++;
-			snl[snl_num].x=s;
-			snl[snl_num].y=d;
-		}
-	}
-	
-	//����ʵ�ʶ���ʯ·�����ͱ�Ҫ����٣���ô����
-	if(els_num<k)
-	{
-		printf("no solution\n");
-		return 0;
-	}
-	
-	algo();
-	
-	return 0;
+
+    scanf("%d%d%d",&n,&m,&k);
+    vill=n;
+
+    for(int i=1;i<=n;i++)
+        fa[i]=i; 
+
+    int s,d,v;
+    for(int i=1;i<=m;i++)
+    {
+        scanf("%d%d%d",&s,&d,&v);
+        if(v==0)
+        {
+            els_num++;
+            els[els_num].x=s;
+            els[els_num].y=d;
+        }
+        else
+        {
+            snl_num++;
+            snl[snl_num].x=s;
+            snl[snl_num].y=d;
+        }
+    }
+
+    if(els_num<k)
+    {
+        printf("no solution\n");
+        return 0;
+    }
+
+    algo();
+
+    return 0;
 }

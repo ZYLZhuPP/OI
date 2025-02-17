@@ -21,7 +21,7 @@ struct IO {
         while ((c = gc()) < 33 && ~c);
         x = c; return *this;
     }
-    inline bool operator ~ () { return ~c; }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n, g[3][N], f[N][M][2], ans, c[N];

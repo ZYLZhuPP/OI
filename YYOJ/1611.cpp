@@ -5,24 +5,24 @@ using namespace std;
 const int N = 1e6 + 5;
 
 struct IO {
-	char c; int f;
-#define gc() (getchar())
-	template<class C>
-	inline IO& operator >> (C &x) {
+    char c; int f;
+#define gc() getchar()
+    template<class C>
+    inline IO& operator >> (C &x) {
         x = 0; f = 1;
         while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
-	}
-	inline bool operator ~ () {return ~c;}
+    }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n, a[N], b[N], s[N], ans;
 
 void solve(int l, int r) {
-	if (r - l + 1 <= ans) {For (i, l, r) s[a[i]] = 0; return;}
+    if (r - l + 1 <= ans) {For (i, l, r) s[a[i]] = 0; return;}
 
-	int lim = b[r - l + 1];
+    int lim = b[r - l + 1];
     int lx = l, rx = r;
     while (lx <= rx && s[a[lx]] >= lim && s[a[rx]] >= lim) lx++, rx--;
     if (lx > rx) {ans = r - l + 1; For (i, l, r) s[a[i]] = 0; return;}
@@ -38,14 +38,14 @@ void solve(int l, int r) {
 }
 
 int main() {
-	io >> n;
-	For (i, 1, n) io >> a[i], s[a[i]]++;
-	For (i, 1, n) io >> b[i];
-	
-	solve(1, n); 
-	
-	printf("%d", ans);
-	
-	return 0;
+    io >> n;
+    For (i, 1, n) io >> a[i], s[a[i]]++;
+    For (i, 1, n) io >> b[i];
+    
+    solve(1, n); 
+    
+    printf("%d", ans);
+    
+    return 0;
 }
 

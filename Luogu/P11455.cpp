@@ -24,28 +24,28 @@ int n, ans, cnt[N];
 vector<int > pos[N], b[N];
 
 inline void get(int x, int k) {
-	int p = 0, mn = n + 1;
-	ans -= cnt[x]; cnt[x] = 0;
-	while (p < (int)pos[x].size()) {
-		int np = upper_bound(pos[x].begin() + p, pos[x].end(), pos[x][p] + k) - pos[x].begin();
-		if (np < (int)pos[x].size()) cmin(mn, pos[x][np] - pos[x][p]);
-		cnt[x]++; ans++; p = np;
-	}
-	if (mn <= n) b[mn].emplace_back(x);
+    int p = 0, mn = n + 1;
+    ans -= cnt[x]; cnt[x] = 0;
+    while (p < (int)pos[x].size()) {
+        int np = upper_bound(pos[x].begin() + p, pos[x].end(), pos[x][p] + k) - pos[x].begin();
+        if (np < (int)pos[x].size()) cmin(mn, pos[x][np] - pos[x][p]);
+        cnt[x]++; ans++; p = np;
+    }
+    if (mn <= n) b[mn].emplace_back(x);
 }
 
 int main() {
-	io >> n;
+    io >> n;
     int x;
-	For (i, 1, n) io >> x, pos[x].pb(i);
-	For (i, 1, n) if (pos[i].size()) {
-		if ((int)pos[i].size() == 1) ans++;
-		else b[1].pb(i);
+    For (i, 1, n) io >> x, pos[x].pb(i);
+    For (i, 1, n) if (pos[i].size()) {
+        if ((int)pos[i].size() == 1) ans++;
+        else b[1].pb(i);
     }
-	For (i, 1, n) {
-		for (auto &x : b[i]) get(x, i);
+    For (i, 1, n) {
+        for (auto &x : b[i]) get(x, i);
         printf("%d\n", ans);
-	}
+    }
 
     return 0;
 }

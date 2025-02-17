@@ -12,23 +12,23 @@ int f[N][STA];
 
 template<class T>
 inline bool read(T &x){
-	x=0;
-	int f=1;
-	char ch=gc();
-	for(; !isdigit(ch); ch=gc())
-		if(!(ch^'-')) f=-1;
-		else if(!(ch^EOF)) return 0;
-	for(; isdigit(ch); ch=gc())
-		x=(x<<3)+(x<<1)+(ch^48);
-	x*=f;
-	return 1;
+    x=0;
+    int f=1;
+    char ch=gc();
+    for(; !isdigit(ch); ch=gc())
+        if(!(ch^'-')) f=-1;
+        else if(!(ch^EOF)) return 0;
+    for(; isdigit(ch); ch=gc())
+        x=(x<<3)+(x<<1)+(ch^48);
+    x*=f;
+    return 1;
 }
 
 void add(int u, int v, int w){
-	nxt[++t]=head[u];
-	to[t]=v;
-	val[t]=w;
-	head[u]=t;
+    nxt[++t]=head[u];
+    to[t]=v;
+    val[t]=w;
+    head[u]=t;
 }
 
 void dfs(int u, int pre){
@@ -44,7 +44,7 @@ void dfs(int u, int pre){
 
 int main(){
     read(Q);
-	while(Q--){
+    while(Q--){
         t=0;
         memset(head, 0, sizeof(head));
         memset(f, 63, sizeof(f));
@@ -62,6 +62,6 @@ int main(){
         dfs(1, -1);
         for(int i=1; i<=n; i++) ans=min(ans, f[i][STA-1]);
         printf("%d\n", ans);
-	} 
-	return 0;
+    } 
+    return 0;
 }

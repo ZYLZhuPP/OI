@@ -42,7 +42,7 @@ inline void solve(int u) {
             s += z; se.erase(p[k]); se.insert(-z);
         }
         if (abs(2 * s - sz[u]) < abs(2 * res - sz[u])) res = s;
-		if (son[u].size() > n / 2) break;
+        if (son[u].size() > n / 2) break;
     }
     ans += 1ll * res * (sz[u] - res);
 }

@@ -8,20 +8,20 @@ const int N = 1e5 + 5;
 struct IO {
     int c, f;
 #define gc() getchar()
-	template<class C>
-	inline IO& operator >> (C &x) {
+    template<class C>
+    inline IO& operator >> (C &x) {
         x = 0; f = 1;
         while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
-	}
+    }
     template<class C>
     inline IO& operator >> (C *x) {
         while ((c = gc()) < 33 && ~c);
         while (c > 32) *x++ = c, c = gc();
         *x = 0; return *this;
     }
-    inline bool operator ~ () { return ~c; }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n;

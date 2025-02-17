@@ -9,34 +9,34 @@ int head[Mo1+5],nxt[N],val[N];
 char k[10], st[300];
 
 void insert(int x, int y){
-	nxt[++t]=head[x];
-	val[t]=y;
-	head[x]=t;
+    nxt[++t]=head[x];
+    val[t]=y;
+    head[x]=t;
 }
 
 bool query(int x, int y){
-	for(int i=head[x]; i; i=nxt[i]){
-		if(val[i]==y) return 1;
-	}
-	return 0;
+    for(int i=head[x]; i; i=nxt[i]){
+        if(val[i]==y) return 1;
+    }
+    return 0;
 }
 
 int main(){
-	cin>>T;
-	while(T--){
-		s1=s2=0;
-		scanf("%s", k);
-		fgets(st, sizeof st, stdin);
-		l=strlen(st);
-		for(int i=0; i<l; i++){
-			((s1*=P1)+=st[i])%=Mo1;
-			((s2*=P2)+=st[i])%=Mo2;
-		}
-		if(k[0]=='a') insert(s1, s2);
-		else{
-			if(query(s1, s2)) printf("yes\n");
-			else printf("no\n");
-		}
-	}
-	return 0;
+    cin>>T;
+    while(T--){
+        s1=s2=0;
+        scanf("%s", k);
+        fgets(st, sizeof st, stdin);
+        l=strlen(st);
+        for(int i=0; i<l; i++){
+            ((s1*=P1)+=st[i])%=Mo1;
+            ((s2*=P2)+=st[i])%=Mo2;
+        }
+        if(k[0]=='a') insert(s1, s2);
+        else{
+            if(query(s1, s2)) printf("yes\n");
+            else printf("no\n");
+        }
+    }
+    return 0;
 } 

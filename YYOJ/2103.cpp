@@ -21,7 +21,7 @@ struct IO {
         while (c > 32) *x++ = c, c = gc();
         *x = 0; return *this;
     }
-    inline bool operator ~ () { return ~c; }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n, len[N], S, T, cnt, ans = -1;

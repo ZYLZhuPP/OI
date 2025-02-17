@@ -25,15 +25,15 @@ int n, f[N][2], sz[N];
 vector<int > es[N];
 
 void dfs(int u) {
-	sz[u] = 1;
+    sz[u] = 1;
     if (es[u].empty()) return f[u][0] = 2, void();
-	int sum = 0, mx = 0, mn = 1e9, mn2 = 1e9;
-	for (auto &v : es[u]) {
-		dfs(v); sum += f[v][0], cmax(mx, sz[v]), sz[u] += sz[v];
-		int x = f[v][1] - f[v][0];
-		if (x <= mn) mn2 = mn, mn = x;
-		else cmin(mn2, x);
-	}
+    int sum = 0, mx = 0, mn = 1e9, mn2 = 1e9;
+    for (auto &v : es[u]) {
+        dfs(v); sum += f[v][0], cmax(mx, sz[v]), sz[u] += sz[v];
+        int x = f[v][1] - f[v][0];
+        if (x <= mn) mn2 = mn, mn = x;
+        else cmin(mn2, x);
+    }
     f[u][0] = sum + 2 * sz[u] + min(mn + mn2, -2 * mx), f[u][1] = sum + mn;
 }
 
@@ -41,8 +41,8 @@ int main() {
     io >> n;
     int x;
     For (i, 2, n) io >> x, es[x].pb(i);
-	dfs(1);
+    dfs(1);
     printf("%d", f[1][0]);
 
-	return 0;
+    return 0;
 }

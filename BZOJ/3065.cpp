@@ -9,16 +9,16 @@ typedef double lf;
 const int N = 7e4 + 5;
 
 struct IO{
-	char c; int f;
-#define gc() (getchar())
-	template<class C>
-	inline IO& operator >> (C &x) {
+    char c; int f;
+#define gc() getchar()
+    template<class C>
+    inline IO& operator >> (C &x) {
         x = 0; f = 1;
         while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
-	}
-	inline bool operator ~ () const { return ~c; }
+    }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 lf mp[N];
@@ -56,49 +56,49 @@ namespace SGT {
 /*ull mp[N];
 namespace seq { // for label
     inline int gen() {
-    	static unsigned int x = 2431898411;
-    	x ^= x << 13;
-    	x ^= x >> 17;
-    	x ^= x << 5;
-	    return x;
+        static unsigned int x = 2431898411;
+        x ^= x << 13;
+        x ^= x >> 17;
+        x ^= x << 5;
+        return x;
     }
-	const int S = 200000;
-	int ls[S], rs[S], p[S], size[S], tot;
-	inline void update(int id) { size[id] = size[ls[id]] + size[rs[id]] + 1; }
-	inline void rls(int & rt){ int x = ls[rt]; ls[rt] = rs[x], update(rs[x] = rt), rt = x; }
-	inline void rrs(int & rt){ int x = rs[rt]; rs[rt] = ls[x], update(ls[x] = rt), rt = x; }
-	inline void build(int rt, ull L, ull R) {
-		ull mid = mp[rt] = (L + R) >> 1;
-		if(ls[rt]) build(ls[rt], L, mid);
-		if(rs[rt]) build(rs[rt], mid, R);
-	}
-	inline void ins(int & rt, int rank, int idx, int fa, ull L = 0, ull R = 1ull << 60) {
-		if(!rt) {
-			p[++tot] = gen(), size[tot] = 1, mp[idx] = (L + R) >> 1, rt = tot;
-		} else {
-			ull mid = (L + R) >> 1;
-			if(size[ls[rt]] >= rank) {
-				ins(ls[rt], rank, idx, rt, L, mid);
-				if(p[ls[rt]] < p[rt]) rls(rt);
-			} else {
-				ins(rs[rt], rank - size[ls[rt]] - 1, idx, rt, mid, R);
-				if(p[rs[rt]] < p[rt]) rrs(rt);
-			}
-			update(rt);
-		}
-		if((p[rt] >= p[fa] || !fa) && rt == idx) build(rt, L, R);
-	}
-	inline int kth(int root, int k) {
-		for(;;) {
-			if(size[ls[root]] >= k) {
-				root = ls[root];
-			} else {
-				if(k == size[ls[root]] + 1) return root;
-				k -= size[ls[root]] + 1;
-				root = rs[root];
-			}
-		}
-	}
+    const int S = 200000;
+    int ls[S], rs[S], p[S], size[S], tot;
+    inline void update(int id) { size[id] = size[ls[id]] + size[rs[id]] + 1; }
+    inline void rls(int & rt){ int x = ls[rt]; ls[rt] = rs[x], update(rs[x] = rt), rt = x; }
+    inline void rrs(int & rt){ int x = rs[rt]; rs[rt] = ls[x], update(ls[x] = rt), rt = x; }
+    inline void build(int rt, ull L, ull R) {
+        ull mid = mp[rt] = (L + R) >> 1;
+        if(ls[rt]) build(ls[rt], L, mid);
+        if(rs[rt]) build(rs[rt], mid, R);
+    }
+    inline void ins(int & rt, int rank, int idx, int fa, ull L = 0, ull R = 1ull << 60) {
+        if(!rt) {
+            p[++tot] = gen(), size[tot] = 1, mp[idx] = (L + R) >> 1, rt = tot;
+        } else {
+            ull mid = (L + R) >> 1;
+            if(size[ls[rt]] >= rank) {
+                ins(ls[rt], rank, idx, rt, L, mid);
+                if(p[ls[rt]] < p[rt]) rls(rt);
+            } else {
+                ins(rs[rt], rank - size[ls[rt]] - 1, idx, rt, mid, R);
+                if(p[rs[rt]] < p[rt]) rrs(rt);
+            }
+            update(rt);
+        }
+        if((p[rt] >= p[fa] || !fa) && rt == idx) build(rt, L, R);
+    }
+    inline int kth(int root, int k) {
+        for(;;) {
+            if(size[ls[root]] >= k) {
+                root = ls[root];
+            } else {
+                if(k == size[ls[root]] + 1) return root;
+                k -= size[ls[root]] + 1;
+                root = rs[root];
+            }
+        }
+    }
 }*/
 
 class Treap {
@@ -137,21 +137,21 @@ class Treap {
     Treap() { srand(time(0)); rt = tot = 0; o.pb(Node()); }
     void ins(const int &v) {
         y = ++tot, o.pb(Node(v));
-		int *x = &rt;
-		for (; *x && o[y].heap > o[*x].heap; ) {
-			++o[*x].sz;
-			x = &(mp[v] < mp[o[*x].v] ? o[*x].l : o[*x].r);
-		}
-		split_k(*x, o[y].l, o[y].r, v);
-		up(*x = y);
+        int *x = &rt;
+        for (; *x && o[y].heap > o[*x].heap; ) {
+            ++o[*x].sz;
+            x = &(mp[v] < mp[o[*x].v] ? o[*x].l : o[*x].r);
+        }
+        split_k(*x, o[y].l, o[y].r, v);
+        up(*x = y);
     }
     void del(const int &v) {
-		int *x = &rt;
-		for (; o[*x].v ^ v; ) {
-			--o[*x].sz;
-			x = &(mp[v] < mp[o[*x].v] ? o[*x].l : o[*x].r);
-		}
-		*x = merge(o[*x].l, o[*x].r);
+        int *x = &rt;
+        for (; o[*x].v ^ v; ) {
+            --o[*x].sz;
+            x = &(mp[v] < mp[o[*x].v] ? o[*x].l : o[*x].r);
+        }
+        *x = merge(o[*x].l, o[*x].r);
     }
     int count(const int &l, const int &r) {
         split_k(rt, rt, x, l); split_k_(x, x, y, r);

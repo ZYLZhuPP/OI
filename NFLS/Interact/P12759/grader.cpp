@@ -22,35 +22,35 @@ string sta, ans[105];
 using namespace GLOBAL;
 
 string query(vector<int> p){
-	++q; check(q <= 100, "Too many queries.");
-	check(p.size() == n, "Length of p incorrect.");
-	vector<bool> used(n, 0);
-	for(int i = 0; i < n; ++i){
-		--p[i]; check(p[i] >= -1 && p[i] < n, "Index not in range.");
-		if(p[i] >= 0){
-			check(!used[p[i]] && p[i] != i, "Given query not a staggered permutation.");
-			used[p[i]] = true;
-		}
-	}
-	string result; result.resize(n);
-	for(int i = 0; i < n; ++i)
-		if(p[i] >= 0)
-	    	result[i] = ans[i][p[i]];
-		else
-			result[i] = '-';
-	return result;
+    ++q; check(q <= 100, "Too many queries.");
+    check(p.size() == n, "Length of p incorrect.");
+    vector<bool> used(n, 0);
+    for(int i = 0; i < n; ++i){
+        --p[i]; check(p[i] >= -1 && p[i] < n, "Index not in range.");
+        if(p[i] >= 0){
+            check(!used[p[i]] && p[i] != i, "Given query not a staggered permutation.");
+            used[p[i]] = true;
+        }
+    }
+    string result; result.resize(n);
+    for(int i = 0; i < n; ++i)
+        if(p[i] >= 0)
+            result[i] = ans[i][p[i]];
+        else
+            result[i] = '-';
+    return result;
 }
 
 void answer(string a){
-	check(r == 0, "Answered Twice!"); ++r;
-	check(a.size() == n, "Answer too short or too long.");
-	if(a != sta){
-	  cerr << "Wrong answer: expected answer " << sta << " got " << a << endl;
-	  score << 0 << endl;
-	  exit(0);
-	}
-	cerr << "Answer correct, with " << q << " queries" << endl;
-	return;
+    check(r == 0, "Answered Twice!"); ++r;
+    check(a.size() == n, "Answer too short or too long.");
+    if(a != sta){
+      cerr << "Wrong answer: expected answer " << sta << " got " << a << endl;
+      score << 0 << endl;
+      exit(0);
+    }
+    cerr << "Answer correct, with " << q << " queries" << endl;
+    return;
 }
 
 

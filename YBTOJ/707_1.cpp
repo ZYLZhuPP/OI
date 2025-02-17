@@ -29,7 +29,7 @@ int main() {
     For (i, 1, m) cin >> u >> v, es[u].push_back(v);
     For (i, 1, n) if (!dfn[i]) Tarjan(i);
     For (u, 1, n) for (auto &v : es[u]) if (co[u] ^ co[v]) out[co[u]]++;
-    For (i, 1, color) if (!out[i]) {
+    For (i, 1, con) if (!out[i]) {
         if (!ans) ans = pt[i].size();
         else { cout << 0; return 0; }
     }

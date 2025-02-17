@@ -9,29 +9,29 @@ inline int gmo(int x) { return mo(x); }
 inline void add(int &x, int y) { mo(x += y); }
 
 struct IO {
-	char c; int f;
-#define gc() (getchar())
-	template<class C>
-	inline IO& operator >> (C &x) {
+    char c; int f;
+#define gc() getchar()
+    template<class C>
+    inline IO& operator >> (C &x) {
         x = 0; f = 1;
         while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
-	}
-	inline bool operator ~ () {return ~c;}
+    }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 ll n, t;
 int cnt1, cnt2, ans, C[N][N], f[N][N];
 
 int qPow(int a, ll b) {
-	int res = 1; 
-	while (b) {
-		if (b & 1) res = 1ll * res * a % Mo; 
-		a = 1ll * a * a % Mo;
-		b >>= 1;
+    int res = 1; 
+    while (b) {
+        if (b & 1) res = 1ll * res * a % Mo; 
+        a = 1ll * a * a % Mo;
+        b >>= 1;
     }
-	return res; 
+    return res; 
 }
 
 void init() {

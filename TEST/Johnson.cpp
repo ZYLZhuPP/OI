@@ -10,16 +10,16 @@ const int N = 3e3 + 5, inf = 1e9;
 template<class C> inline bool cmin(C &x, const C &y) {  return y<x? x=y, 1: 0; }
 
 struct IO {
-	char c; int f;
+    char c; int f;
 #define gc() getchar()
-	template<class C>
-	inline IO& operator >> (C &x) {
-    	x = 0; f = 1;
-    	while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
-    	while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
-    	x *= f; return *this;
-	}
-	inline bool operator ~ () const { return ~c; }
+    template<class C>
+    inline IO& operator >> (C &x) {
+        x = 0; f = 1;
+        while (!isdigit(c = gc()) && ~c) f |= -!(c ^ 45);
+        while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
+        x *= f; return *this;
+    }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n, m, in[N], vis[N], inq[N];

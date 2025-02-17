@@ -14,16 +14,16 @@ vec_ll zero,vec,f[N][10];
 
 template<class T>
 inline bool read(T &x){
-	x=0;
-	int f=1;
-	char ch=gc();
-	for(; !isdigit(ch); ch=gc())
-		if(!(ch^'-')) f=-1;
-		else if(!(ch^EOF)) return 0;
-	for(; isdigit(ch); ch=gc())
-		x=(x<<3)+(x<<1)+(ch^48);
-	x*=f;
-	return 1;
+    x=0;
+    int f=1;
+    char ch=gc();
+    for(; !isdigit(ch); ch=gc())
+        if(!(ch^'-')) f=-1;
+        else if(!(ch^EOF)) return 0;
+    for(; isdigit(ch); ch=gc())
+        x=(x<<3)+(x<<1)+(ch^48);
+    x*=f;
+    return 1;
 }
 
 void add(vec_ll &a, vec_ll &b){
@@ -66,8 +66,8 @@ void init(){
 int main(){
     for(int i=0; i<=9; i++) zero.push_back(0);
     init();
-	read(a); read(b);
-	vec_ll ans1=solve(a),ans2=solve(b+1);
-	for(int i=0; i<=9; i++) printf("%lld ", ans2[i]-ans1[i]);
-	return 0;
+    read(a); read(b);
+    vec_ll ans1=solve(a),ans2=solve(b+1);
+    for(int i=0; i<=9; i++) printf("%lld ", ans2[i]-ans1[i]);
+    return 0;
 }

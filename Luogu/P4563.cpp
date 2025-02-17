@@ -16,7 +16,7 @@ struct IO {
         while (isdigit(c)) x = (x << 3) + (x << 1) + (c ^ 48), c = gc();
         x *= f; return *this;
     }
-    inline bool operator ~ () { return ~c; }
+    inline bool operator ~ () const { return ~c; }
 } io;
 
 int n, h[N], f[N][N], ans;
@@ -24,17 +24,17 @@ int n, h[N], f[N][N], ans;
 Lf K(int x, int y) { return 1.L * (h[y] - h[x]) / (y - x); }
 
 int main() {
-	io >> n;
-	For (i, 1, n) io >> h[i];
-	For (i, 1, n) {
-		ans ^= (f[i][i] = 1);
-		int r = i;
-		rFor (j, i - 1, 1) {
-			if (j == i - 1 || K(j, i) < K(r, i)) r = j;
-			ans ^= (f[j][i] = f[r + 1][i] + min(f[j][r - 1], f[j][r]));
-		}
-	}
-	printf("%d", ans);
-	
-	return 0;
+    io >> n;
+    For (i, 1, n) io >> h[i];
+    For (i, 1, n) {
+        ans ^= (f[i][i] = 1);
+        int r = i;
+        rFor (j, i - 1, 1) {
+            if (j == i - 1 || K(j, i) < K(r, i)) r = j;
+            ans ^= (f[j][i] = f[r + 1][i] + min(f[j][r - 1], f[j][r]));
+        }
+    }
+    printf("%d", ans);
+
+    return 0;
 }
