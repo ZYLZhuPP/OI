@@ -8,7 +8,7 @@ typedef unsigned long long ull;
 typedef double lf;
 const int N = 7e4 + 5;
 
-struct IO{
+struct IO {
     char c; int f;
 #define gc() getchar()
     template<class C>
