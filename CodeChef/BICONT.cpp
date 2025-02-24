@@ -4,7 +4,7 @@ using namespace std;
 #define pb push_back
 #define rFor(i, r, l) for (int i = (r); i >= (l); --i)
 #define For(i, l, r) for (int i = (l); i <= (r); ++i)
-const int N = 705, Mo = 998244353;
+const int N = 705, Mo = 1e9 + 7;
 inline int mo(int x) { return x -= x>=Mo? Mo: x<0? -Mo: 0; }
 inline void add(int &x, const int &y) { x = mo(x + y); }
 inline int ml(const int &x, const int &y) { return 1ll * x * y % Mo; }
@@ -23,21 +23,22 @@ struct IO {
     inline bool operator ~ () const { return ~c; }
 } io;
 
-int n, g0[N][N], g1[N][N], sz[N], C[N][N], _2[N * N];
+int n, g[N][N], sz[N], C[N][N], _2[N * N];
 vector<vector<int > > f[N];
 vector<int > es[N];
 
-void dfs(int u, int pre) {
-    sz[u] = g0[1][0] = 1;
+inline void dfs(int u, int pre) {
+    sz[u] = 1;
+    for (auto &v : es[u]) if (v ^ pre) dfs(v, u), sz[u] += sz[v];
+    f[u].resize(sz[u] + 1, vector<int >(sz[u] + 1, 0));
+    sz[u] = f[u][1][0] = 1;
     for (auto &v : es[u]) if (v ^ pre) {
-        dfs(v, u);
-        For (i, 1, sz[u]) For (j, 0, sz[u] - i) For (k, 0, sz[v]) For (l, 0, sz[v] - k) add(g1[i + k][j + l], ml(g0[i][j], f[v][k][l]));
+        For (i, 1, sz[u]) For (j, 0, sz[u] - i) For (k, 0, sz[v]) For (l, 0, sz[v] - k) add(g[i + k][j + l], ml(f[u][i][j], f[v][k][l]));
         vector<vector<int > >().swap(f[v]);
         sz[u] += sz[v];
-        For (i, 1, sz[u]) For (j, 0, sz[u] - i) g0[i][j] = g1[i][j], g1[i][j] = 0;
+        For (i, 1, sz[u]) For (j, 0, sz[u] - i) f[u][i][j] = g[i][j], g[i][j] = 0;
     }
-    f[u].resize(sz[u] + 1, vector<int >(sz[u] + 1, 0));
-    For (i, 1, sz[u]) For (j, 0, sz[u] - i) add(f[u][i][j], g0[i][j]), add(f[u][0][j + 1], ml(g0[i][j], _2[(i - 1) * (i - 2) / 2]));
+    For (i, 1, sz[u]) For (j, 0, sz[u] - i) add(f[u][0][j + 1], ml(f[u][i][j], _2[(i - 1) * (i - 2) / 2]));
 }
 
 int main() {
@@ -48,7 +49,7 @@ int main() {
     int u, v;
     For (i, 1, n - 1) io >> u >> v, es[u].pb(v), es[v].pb(u);
     dfs(1, 0);
-    rFor (i, n, 1) For (j, i + 1, n) add(f[1][0][i], -ml(f[1][0][j], C[i - 1][j - 1]));
+    rFor (i, n, 1) For (j, i + 1, n) add(f[1][0][i], -ml(f[1][0][j], C[j - 1][i - 1]));
     For (i, 1, n) printf("%d ", f[1][0][i]);
 
     return 0;
