@@ -8,7 +8,6 @@ typedef long long ll;
 typedef vector<int > VI;
 typedef vector<VI > VVI;
 const int N = 15, Mo = 1e9 + 7;
-const ll MMo = 1ll * Mo * Mo;
 
 struct IO {
     char c; int f;
@@ -73,24 +72,15 @@ inline int solve() {
             }
         }
 
-        for (int d = c[p]; d;) {
+        for (int d = c[p]; d; d >>= 1) {
             if (d & 1) {
                 VI g(m, 0);
                 For (i, 0, m - 1) For (j, 0, m - 1) g[i] = (g[i] + 1ll * a[i][j] * f[j]) % Mo;
                 f = g;
             }
-            if (d >>= 1) {
-                VVI b(m, VI(m, 0));
-                For (i, 0, m - 1) For (j, 0, m - 1) {
-                    ll x = 0;
-                    For (k, 0, m - 1) {
-                        x += 1ll * a[i][k] * a[k][j];
-                        if (x > MMo) x -= MMo;
-                    }
-                    b[i][j] = x % Mo;
-                }
-                a = b;
-            }
+            VVI b(m, VI(m, 0));
+            For (i, 0, m - 1) For (j, 0, m - 1) For (k, 0, m - 1) b[i][j] = (b[i][j] + 1ll * a[i][k] * a[k][j]) % Mo;
+            a = b;
         }
     }
 
