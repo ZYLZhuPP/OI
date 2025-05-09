@@ -1,12 +1,12 @@
-#include <string>
+#include<string>
 
-#include <algorithm>
-#include <cmath>
-#include <cstdio>
-#include <cstring>
-#include <deque>
-#include <fstream>
-#include <vector>
+#include<algorithm>
+#include<cmath>
+#include<cstdio>
+#include<cstring>
+#include<deque>
+#include<fstream>
+#include<vector>
 
 using namespace std;
 

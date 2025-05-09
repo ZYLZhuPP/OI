@@ -1,9 +1,9 @@
-#include "perm.h"
-#include <cstdio>
-#include <vector>
-#include <cassert>
-#include <algorithm>
-#include <stdlib.h>
+#include"perm.h"
+#include<cstdio>
+#include<vector>
+#include<cassert>
+#include<algorithm>
+#include<stdlib.h>
 
 using namespace std;
 

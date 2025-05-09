@@ -1,6 +1,6 @@
 #pragma once
-#include "LightGeometry.h"
-#include <vector>
+#include"LightGeometry.h"
+#include<vector>
 
 namespace Light
 {

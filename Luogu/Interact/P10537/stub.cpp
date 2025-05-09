@@ -1,8 +1,8 @@
-#include "september.h"
+#include"september.h"
 
-#include <cassert>
-#include <cstdio>
-#include <vector>
+#include<cassert>
+#include<cstdio>
+#include<vector>
 
 void taskcase() {
     int N, M;

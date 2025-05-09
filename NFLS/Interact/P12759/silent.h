@@ -1,5 +1,5 @@
-#include <vector>
-#include <string>
+#include<vector>
+#include<string>
 
 void solve(int n, char tp);
 std::string query(std::vector<int> p);

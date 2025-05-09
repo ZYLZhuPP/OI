@@ -1,5 +1,5 @@
-#include "swap.h"
-#include <bits/stdc++.h>
+#include"swap.h"
+#include<bits/stdc++.h>
 using namespace std;
 
 #define pb push_back

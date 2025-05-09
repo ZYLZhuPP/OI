@@ -1,8 +1,8 @@
 //by zkw
-#include <cstdio>
-#include <cstring>
-#include <deque>
-#include <algorithm>
+#include<cstdio>
+#include<cstring>
+#include<deque>
+#include<algorithm>
 using namespace std;
 
 const int V = 440, E = V * 2, maxint = 0x3F3F3F3F;

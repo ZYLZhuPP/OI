@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 int n, p, m;
 int head[100010], from[200010], to[200010], nxt[200010], tot;

@@ -1,7 +1,7 @@
-#include <cstdio>
-#include <cstdlib>
-#include <vector>
-#include "game.h"
+#include<cstdio>
+#include<cstdlib>
+#include<vector>
+#include"game.h"
 
 namespace {
 

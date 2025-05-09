@@ -1,9 +1,9 @@
-#include "cyberland.h"
+#include"cyberland.h"
 
-#include <cassert>
-#include <cstdio>
+#include<cassert>
+#include<cstdio>
 
-#include <vector>
+#include<vector>
 
 int main() {
   int T;

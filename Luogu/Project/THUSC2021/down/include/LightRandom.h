@@ -1,6 +1,6 @@
 #pragma once
-#include <random>
-#include <ctime>
+#include<random>
+#include<ctime>
 
 namespace Light
 {

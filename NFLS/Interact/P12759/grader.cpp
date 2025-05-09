@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
-#include "silent.h"
+#include<bits/stdc++.h>
+#include"silent.h"
 
 using namespace std;
 

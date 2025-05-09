@@ -1,5 +1,5 @@
-#include "fun.h"
-#include <bits/stdc++.h>
+#include"fun.h"
+#include<bits/stdc++.h>
 using namespace std;
 
 //int hoursRequired(int X, int Y);

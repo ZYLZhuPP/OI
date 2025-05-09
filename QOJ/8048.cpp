@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 
 const int maxn = 1e5;
 int n, f[maxn + 5];

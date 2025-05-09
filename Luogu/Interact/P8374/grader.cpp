@@ -1,11 +1,11 @@
-#include "mars.h"
+#include"mars.h"
 
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <cassert>
-#include <string>
-#include <bitset>
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<cassert>
+#include<string>
+#include<bitset>
 
 using namespace std;
 

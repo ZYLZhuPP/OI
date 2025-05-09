@@ -1,6 +1,6 @@
 #pragma once
-#include "LightImage.h"
-#include "LightMath.h"
+#include"LightImage.h"
+#include"LightMath.h"
 
 namespace Light
 {

@@ -1,10 +1,10 @@
-#include "swap.h"
+#include"swap.h"
 
-#include <cassert>
-#include <cstdio>
+#include<cassert>
+#include<cstdio>
 
-#include <string>
-#include <vector>
+#include<string>
+#include<vector>
 
 int main() {
   int N, M;

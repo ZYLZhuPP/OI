@@ -1,8 +1,8 @@
-#include "include/LightPathTrace.h"
-#include <iomanip>
-#include <random>
+#include"include/LightPathTrace.h"
+#include<iomanip>
+#include<random>
 
-#include <ctime>
+#include<ctime>
 
 using namespace std;
 using namespace Light;

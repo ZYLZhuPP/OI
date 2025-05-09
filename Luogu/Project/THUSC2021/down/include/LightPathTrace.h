@@ -1,6 +1,6 @@
 #pragma once
-#include "LightScene.h"
-#include "LightModel.h"
+#include"LightScene.h"
+#include"LightModel.h"
 
 namespace Light
 {

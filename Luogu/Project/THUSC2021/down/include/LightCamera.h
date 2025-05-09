@@ -1,7 +1,7 @@
 #pragma once
-#include "LightMath.h"
-#include "LightModel.h"
-#include "LightRandom.h"
+#include"LightMath.h"
+#include"LightModel.h"
+#include"LightRandom.h"
 
 namespace Light
 {

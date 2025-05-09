@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 //�Ұ���#define
 #define mid(x, y) (x + y) >> 1
 #define getm int m = mid(s, t)

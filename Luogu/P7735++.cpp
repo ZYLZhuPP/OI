@@ -1,5 +1,5 @@
-#include <cstdio>
-#include <cstring>
+#include<cstdio>
+#include<cstring>
 using namespace std;
 const int N = 100010;
 struct Edge {

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "LightRandom.h"
-#include <iostream>
-#include <cmath>
-#include <cstring>
-#include <typeinfo>
-#include <string>
+#include"LightRandom.h"
+#include<iostream>
+#include<cmath>
+#include<cstring>
+#include<typeinfo>
+#include<string>
 
 namespace Light
 {

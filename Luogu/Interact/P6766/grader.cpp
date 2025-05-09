@@ -1,11 +1,11 @@
-#include "fun.h"
+#include"fun.h"
 
-#include <cassert>
-#include <cstdio>
+#include<cassert>
+#include<cstdio>
 
-#include <algorithm>
-#include <string>
-#include <vector>
+#include<algorithm>
+#include<string>
+#include<vector>
 
 static void wrongAnswer(std::string message) {
   printf("WA: %s\n", message.c_str());

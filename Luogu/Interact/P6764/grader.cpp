@@ -1,10 +1,10 @@
-#include "paint.h"
+#include"paint.h"
 
-#include <cassert>
-#include <cstdio>
+#include<cassert>
+#include<cstdio>
 
-#include <string>
-#include <vector>
+#include<string>
+#include<vector>
 
 int main() {
   int N, M, K;

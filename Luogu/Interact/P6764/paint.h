@@ -1,4 +1,4 @@
-#include <vector>
+#include<vector>
 
 int minimumInstructions(
     int N, int M, int K, std::vector<int> C,

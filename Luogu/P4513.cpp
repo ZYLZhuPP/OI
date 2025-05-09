@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 #define lc (p<<1)
 #define rc (p<<1|1)
 #define mid ((l + r) >> 1)

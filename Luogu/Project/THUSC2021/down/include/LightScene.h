@@ -1,12 +1,12 @@
 #pragma once
 
-#include "LightCameraLib.h"
-#include "LightFilm.h"
-#include <thread>
-#include <mutex>
-#include <queue>
-#include <sstream>
-#include <cstdlib>
+#include"LightCameraLib.h"
+#include"LightFilm.h"
+#include<thread>
+#include<mutex>
+#include<queue>
+#include<sstream>
+#include<cstdlib>
 
 namespace Light
 {

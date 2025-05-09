@@ -1,5 +1,5 @@
-#include "paint.h"
-#include <vector>
+#include"paint.h"
+#include<vector>
 using namespace std;
 
 #define pb push_back

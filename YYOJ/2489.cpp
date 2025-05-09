@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 #define rFor(i, r, l) for (int i = (r); i >= (l); --i)

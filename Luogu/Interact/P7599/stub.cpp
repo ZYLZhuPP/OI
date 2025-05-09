@@ -1,9 +1,9 @@
-#include "jumps.h"
+#include"jumps.h"
 
-#include <cassert>
-#include <cstdio>
+#include<cassert>
+#include<cstdio>
 
-#include <vector>
+#include<vector>
 
 int main() {
   int N, Q;

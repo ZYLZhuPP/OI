@@ -1,9 +1,9 @@
 #pragma once
-#include "LightMath.h"
-#include <algorithm>
-#include <sstream>
-#include <fstream>
-#include <vector>
+#include"LightMath.h"
+#include<algorithm>
+#include<sstream>
+#include<fstream>
+#include<vector>
 
 namespace Light
 {

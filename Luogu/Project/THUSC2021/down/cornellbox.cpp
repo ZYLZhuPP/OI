@@ -1,8 +1,8 @@
-#include "include/LightRayTrace.h"
-#include <iomanip>
-#include <random>
+#include"include/LightRayTrace.h"
+#include<iomanip>
+#include<random>
 
-#include <ctime>
+#include<ctime>
 
 using namespace std;
 using namespace Light;

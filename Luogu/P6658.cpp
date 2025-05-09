@@ -27,8 +27,8 @@ vector<int > pt[N];
 unordered_map<ull, int > E;
 
 inline ull rnd() {
-	static ull x = 1145141;
-	x ^= x << 13; x ^= x >> 17; x ^= x << 7;
+    static ull x = 1145141;
+    x ^= x << 13; x ^= x >> 17; x ^= x << 7;
     return x;
 }
 

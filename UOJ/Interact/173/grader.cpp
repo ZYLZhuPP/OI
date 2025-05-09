@@ -1,11 +1,11 @@
 /* This is sample grader for the contestant */
 
-#include "expr.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <assert.h>
-#include <time.h>
+#include"expr.h"
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+#include<assert.h>
+#include<time.h>
 
 #define debug(...) // fprintf(stderr,__VA_ARGS__)
 

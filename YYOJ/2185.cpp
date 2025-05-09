@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
-#include "fake.h"
+#include<bits/stdc++.h>
+#include"fake.h"
 using namespace std;
 
 #define For(i, l, r) for (int i = (l); i <= (r); ++i)
