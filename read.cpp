@@ -1,17 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
-
-#define pb push_back
-#define For(i, l, r) for (int i = (l); i <= (r); ++i)
-#define rFor(i, r, l) for (int i = (r); i >= (l); --i)
 typedef long long ll;
-typedef vector<int > VI;
-typedef vector<VI > VVI;
-const int N = 15, Mo = 1e9 + 7;
-const ll MMo = 1ll * Mo * Mo;
+#define rFor(i, r, l) for (int i = (r); i >= (l); --i)
+#define For(i, l, r) for (int i = (l); i <= (r); ++i)
+const int N = 2e5 + 5, Mo = 998244353, M = Mo - 1;
+inline int qPow(int a, int b, int Mo) { int r = 1; for (; b; b >>= 1, a = 1ll * a * a % Mo) if (b & 1) r = 1ll * r * a % Mo; return r; }
 
 struct IO {
-    char c; int f;
+    int c, f;
 #define gc() getchar()
     template<class C>
     inline IO& operator >> (C &x) {
@@ -23,85 +19,38 @@ struct IO {
     inline bool operator ~ () const { return ~c; }
 } io;
 
-int T, n, C, K, co[N], c[N];
+int n, m, _[N], vis[N], inv[N], h[N];
 
-inline int solve() {
-    io >> n >> C >> K;
-    For (i, 0, n - 1) io >> co[i] >> c[i];
+inline void init() {
+    For (i, 2, m) if (!vis[i]) for (int j = i + i; j <= m; j += i) vis[j] = 1;
+    For (i, 0, m) _[i] = qPow(i, n, M);
+}
 
-    VI f(1 + 2 * K, 0); For (k, 0, K) f[k] = 1;
-    VI vis; int j = 0;
-
-    For (p, 0, n - 1) {
-        int t = 0;
-        for (; t < j && co[p] ^ vis[t]; t++);
-        if (t == j) {
-            j++;
-            vis.pb(co[p]);
-            For (k, 1, K) f.pb(f[K + k]);
-        }
-
-        int m = f.size();
-        VVI a(m, VI(m, 0));
-        a[0][0] = 1;
-
-        For (k, 1, K) {
-            a[k][k] = 1;
-            For (x, 0, j - 1) if (x ^ t) a[k][(x + 2) * K + k] = 1;
-            a[k][K + k] = C - j;
-
-            if (j < C) {
-                int u = K + k;
-                a[u][u] = 1;
-                a[u][k - 1] = 1;
-                if (k > 1) {
-                    For (y, 0, j - 1) a[u][(y + 2) * K + k - 1] = 1;
-                    a[u][K + k - 1] = C - j - 1;
-                }
-            }
-
-            For (x, 0, j - 1) {
-                int u = (x + 2) * K + k;
-                a[u][u] = 1;
-                if (x ^ t) {
-                    a[u][k - 1] = 1;
-                    if (k > 1) {
-                        For (y, 0, j - 1) if (y ^ x) a[u][(y + 2) * K + k - 1] = 1;
-                        a[u][K + k - 1] = C - j;
-                    }
-                }
-            }
-        }
-
-        for (int d = c[p]; d;) {
-            if (d & 1) {
-                VI g(m, 0);
-                For (i, 0, m - 1) For (j, 0, m - 1) g[i] = (g[i] + 1ll * a[i][j] * f[j]) % Mo;
-                f = g;
-            }
-            if (d >>= 1) {
-                VVI b(m, VI(m, 0));
-                For (i, 0, m - 1) For (j, 0, m - 1) {
-                    ll x = 0;
-                    For (k, 0, m - 1) {
-                        x += 1ll * a[i][k] * a[k][j];
-                        if (x > MMo) x -= MMo;
-                    }
-                    b[i][j] = x % Mo;
-                }
-                a = b;
-            }
-        }
+inline int get(int m) {
+    if (h[m]) return h[m];
+    ll res = 1;
+    For (i, 2, m) if (!vis[i]) {
+        ll d = i, s = 0;
+        while (d <= m) s += _[m] - _[m - m / d], d *= i;
+        res = res * qPow(i, (s % M + M) % M, Mo) % Mo;
     }
-
-    int res = (f[K] + 1ll * (C - j) * f[2 * K]) % Mo;
-    For (x, 0, j - 1) res = (res + f[(x + 2) * K + K]) % Mo;
-    return res;
+    return h[m] = res;
 }
 
 int main() {
-    io >> T;
-    while (T--) printf("%d\n", solve());
+    // freopen("num.in", "r", stdin);
+    // freopen("num.out", "w", stdout);
+    io >> n >> m;
+    init();
+    ll ans = 1;
+    rFor (i, m, 1) {
+        ll x = 1ll * get(m / i) * qPow(i, _[m / i], Mo) % Mo;
+        for (int j = i + i; j <= m; j += i) x = x * inv[j] % Mo;
+        inv[i] = qPow(x, Mo - 2, Mo);
+        ans = ans * qPow(x, i, Mo) % Mo;
+    }
+    printf("%lld\n", ans);
 
+    // fclose(stdin); fclose(stdout);
     return 0;
 }
